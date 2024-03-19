@@ -1,6 +1,6 @@
-import './globals.css';
+import "./globals.css";
 
-import { GeistSans } from 'geist/font/sans';
+import { GeistSans } from "geist/font/sans";
 
 // #region Functions (1)
 
@@ -15,5 +15,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-// #endregion Functions (1)
