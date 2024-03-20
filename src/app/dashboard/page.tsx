@@ -2,5 +2,7 @@
 import Slider from "@/components/slider"
 
 export default function Dashboard() {
-  return <Slider />
+  return <>
+  <Slider />
+  </>
 }
