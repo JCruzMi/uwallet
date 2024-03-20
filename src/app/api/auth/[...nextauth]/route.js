@@ -17,23 +17,21 @@ export const authOptions = {
         const userFound = await sql`
         SELECT * 
         FROM users 
-        WHERE email = ${`%${credentials.email}%`}`;
+        WHERE email = ${credentials.email}`;
 
-        if (!userFound) throw new Error("No user found");
-
-        console.log(userFound);
+        if (!userFound.rows[0]) throw new Error("No user found");
 
         const matchPassword = await bcrypt.compare(
           credentials.password,
-          userFound.password
+          userFound.rows[0].password
         );
 
         if (!matchPassword) throw new Error("Wrong password");
 
         return {
-          id: userFound.id,
-          name: userFound.username,
-          email: userFound.email,
+          id: userFound.rows[0].id,
+          name: userFound.rows[0].username,
+          email: userFound.rows[0].email,
         };
       },
     }),
