@@ -1,8 +1,9 @@
-"use client";
-import Slider from "@/components/slider"
+import Slider from "@/components/Slider";
+
+// #region Functions (1)
 
 export default function Dashboard() {
-  return <>
-  <Slider />
-  </>
+  return <Slider />;
 }
+
+// #endregion Functions (1)
