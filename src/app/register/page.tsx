@@ -17,29 +17,35 @@ export default function Register() {
   });
   const router = useRouter();
 
-  const onSubmit = handleSubmit(async (data) => {
-    if (data.password !== data.confirmPassword) {
-      return alert("Passwords do not match");
+  const onSubmit = handleSubmit(
+    async (data: {
+      password: string;
+      confirmPassword: string;
+      username: string;
+      email: string;
+    }) => {
+      if (data.password !== data.confirmPassword) {
+        return alert("Passwords do not match");
+      }
+
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        body: JSON.stringify({
+          username: data.username,
+          email: data.email,
+          password: data.password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (res.ok) {
+        router.push("/login");
+      }
     }
+  );
 
-    const res = await fetch("/api/auth/register", {
-      method: "POST",
-      body: JSON.stringify({
-        username: data.username,
-        email: data.email,
-        password: data.password,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (res.ok) {
-      router.push("/auth/login");
-    }
-  });
-
-  console.log(errors);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">

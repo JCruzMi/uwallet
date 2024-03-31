@@ -1,19 +1,18 @@
 import { NextResponse } from "next/server";
-import bcrypt from "bcrypt";
-import db from "@/libs/db";
-
+import { sql } from "@vercel/postgres";
+const bcrypt = require("bcrypt");
 // #region Functions (1)
 
-//TODO: implement
 export async function POST(request) {
   try {
     const data = await request.json();
 
-    const userFound = await db.user.findUnique({
-      where: {
-        email: data.email,
-      },
-    });
+    let userFound = await sql`
+    SELECT * 
+    FROM users
+    WHERE email = ${data.email}`;
+
+    userFound = userFound.rows[0];
 
     if (userFound) {
       return NextResponse.json(
@@ -26,33 +25,15 @@ export async function POST(request) {
       );
     }
 
-    const usernameFound = await db.user.findUnique({
-      where: {
-        username: data.username,
-      },
-    });
-
-    if (usernameFound) {
-      return NextResponse.json(
-        {
-          message: "username already exists",
-        },
-        {
-          status: 400,
-        }
-      );
-    }
-
     const hashedPassword = await bcrypt.hash(data.password, 10);
-    const newUser = await db.user.create({
-      data: {
-        username: data.username,
-        email: data.email,
-        password: hashedPassword,
-      },
-    });
 
-    const { password: _, ...user } = newUser;
+    const newUser = await sql`INSERT
+    INTO users (username, email, password)
+    VALUES (${data.username}, ${data.email}, ${hashedPassword})
+    RETURNING *`;
+
+
+    const { password: _, ...user } = newUser.rows[0];
 
     return NextResponse.json(user);
   } catch (error) {

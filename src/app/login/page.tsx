@@ -1,8 +1,7 @@
 "use client";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
+
+import { authenticate } from '@/lib/actions';
 
 export default function Login() {
   const {
@@ -15,38 +14,20 @@ export default function Login() {
       password: "",
     },
   });
-  const router = useRouter();
-  const [error, setError] = useState(null);
 
-  const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
-
-    const res: any = await signIn("credentials", {
+  const onSubmit = handleSubmit(async (data) => {    
+    authenticate({
       email: data.email,
       password: data.password,
-      redirect: false,
-    });
-
-    console.log(res);
-    if (res.error) {
-      setError(res.error);
-    } else {
-      router.push("/dashboard");
-      router.refresh();
-    }
+    })
+    
   });
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 w-full">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
         <div className="h-full flex justify-center items-center w-full">
-          <form onSubmit={onSubmit} className="w-1/4">
-            {error && (
-              <p className="bg-red-500 text-lg text-white p-3 rounded mb-2">
-                {error}
-              </p>
-            )}
-
+          <form onSubmit={onSubmit} className="w-1/4">           
             <h1 className="text-slate-200 font-bold text-4xl mb-4">Login</h1>
 
             <label
