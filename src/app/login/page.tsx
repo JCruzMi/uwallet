@@ -1,7 +1,7 @@
 "use client";
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 
-import { authenticate } from '@/lib/actions';
+import { authenticate } from "@/lib/actions";
 
 export default function Login() {
   const {
@@ -15,19 +15,18 @@ export default function Login() {
     },
   });
 
-  const onSubmit = handleSubmit(async (data) => {    
+  const onSubmit = handleSubmit(async (data) => {
     authenticate({
       email: data.email,
       password: data.password,
-    })
-    
+    });
   });
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 w-full">
+    <main className="flex min-h-screen flex-col items-center justify-between md:p-24 p-4 w-full">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
         <div className="h-full flex justify-center items-center w-full">
-          <form onSubmit={onSubmit} className="w-1/4">           
+          <form onSubmit={onSubmit} className="w-1/4">
             <h1 className="text-slate-200 font-bold text-4xl mb-4">Login</h1>
 
             <label
