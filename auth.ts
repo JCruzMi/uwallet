@@ -2,9 +2,7 @@ import bcrypt from 'bcryptjs';
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
-
 import { sql } from '@vercel/postgres';
-
 import { authConfig } from './auth.config';
 
 // #region Functions (1)
@@ -14,7 +12,6 @@ async function getUser(email: string): Promise<any | undefined> {
     const user = await sql`SELECT * FROM users WHERE email=${email}`;
     return user.rows[0];
   } catch (error) {
-    console.error('Failed to fetch user:', error);
     throw new Error('Failed to fetch user.');
   }
 }
