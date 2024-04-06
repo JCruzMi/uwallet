@@ -1,5 +1,11 @@
 import Navbar from "@/components/Navbar";
+import { AxeIcon } from "lucide-react";
 import Link from "next/link";
+import {
+  ShieldCheckIcon,
+  ClockIcon,
+  SparklesIcon,
+} from "@heroicons/react/24/outline";
 
 export default function Home() {
   return (
@@ -32,9 +38,34 @@ export default function Home() {
             <div className="w-full h-full flex flex-col items-center justify-between gap-10 pt-10">
               <h1 className="text-4xl">Services</h1>
               <div className="flex gap-4 w-full h-4/5">
-                <div className="bg-white rounded-t-xl w-1/3 h-full"></div>
-                <div className="bg-white rounded-t-xl w-1/3 h-full"></div>
-                <div className="bg-white rounded-t-xl w-1/3 h-full"></div>
+                <div className="bg-white rounded-t-xl w-1/3 h-full text-black flex flex-col gap-4 p-10 items-center">
+                  <ShieldCheckIcon className="h-6 w-6 text-gray-black" />
+
+                  <h1 className="font-bold text-2xl">100% Secure</h1>
+                  <p className="text-center">
+                    Con sólidos protocolos de seguridad, gestiona tarjetas y
+                    dinero de forma segura y sin complicaciones.
+                  </p>
+                </div>
+                <div className="bg-white rounded-t-xl w-1/3 h-full text-black flex flex-col gap-4 p-10 items-center">
+                  <ClockIcon className="h-6 w-6 text-gray-black" />
+
+                  <h1 className="font-bold text-2xl">Save time</h1>
+                  <p className="text-center">
+                    Con funciones intuitivas simplifican gestiones financieras,
+                    ahorrando tiempo para lo que realmente importa en tu vida.
+                  </p>
+                </div>
+                <div className="bg-white rounded-t-xl w-1/3 h-full text-black flex flex-col gap-4 p-10 items-center">
+                  <SparklesIcon className="h-6 w-6 text-gray-black" />
+
+                  <h1 className="font-bold text-2xl">Minimalist</h1>
+                  <p className="text-center">
+                    Con un diseño limpio, funcionalidades esenciales. Administra
+                    tarjetas, realiza transferencias y gestiona finanzas
+                    eficientemente.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
