@@ -1,9 +1,12 @@
 "use client";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+
 import Slider from "react-slick";
-import Card from "./Card";
+
 import { useState } from "react";
+
+import Card from "./Card";
 
 export default function SliderCards() {
   const [sliderRef, setSliderRef] = useState(null);
@@ -28,7 +31,14 @@ export default function SliderCards() {
           className="items-stretch justify-items-stretch w-full flex h-full gap-4 rounded-lg"
         >
           {Array.from({ length: 5 }).map((item, index) => (
-            <Card key={index} amount={index} category="" name="" />
+            <Card
+              key={index}
+              name=""
+              title=""
+              amount={index}
+              numWallet=""
+              category=""
+            />
           ))}
         </Slider>
       </div>
