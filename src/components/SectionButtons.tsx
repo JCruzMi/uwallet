@@ -1,10 +1,14 @@
-import Button from "./Button";
+import { Button } from './ui/Button';
+
+// #region Functions (1)
 
 export default function SectionButtons() {
   return <div className="flex gap-4 w-full max-w-sm">
-    <Button icon="default" text="Send" click={() => {}} />
-    <Button icon="default" text="Receive" click={() => {}}/>
-    <Button icon="default" text="Withdraw" click={() => {}}/>
-    <Button icon="default" text="Others" click={() => {}}/>
+    <Button>Send</Button>
+    <Button>Receive</Button>
+    <Button>Withdraw</Button>
+    <Button>Others</Button>
   </div>
 }
+
+// #endregion Functions (1)
