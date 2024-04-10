@@ -1,10 +1,9 @@
+import CreateCard from "@/components/CreateCard";
 import Navbar from "@/components/dashboard/Navbar";
 import TopNavigation from "@/components/dashboard/TopNavigation";
 import SectionButtons from "@/components/SectionButtons";
 import SectionSend from "@/components/SectionSend";
 import SliderCards from "@/components/SliderCards";
-import { Button } from "@/components/ui/Button";
-import { PlusIcon } from "@heroicons/react/16/solid";
 
 // #region Functions (1)
 
@@ -19,24 +18,22 @@ export default function Dashboard() {
         </div>
         <div className="flex flex-row w-full gap-4 overflow-x-hidden">
           <div className="flex flex-col gap-4">
-            <Button className="flex items-center justify-center w-[62px] rounded-lg h-full">
-              <PlusIcon className="h-6 w-6" />
-            </Button>
+            <CreateCard />
           </div>
           <SliderCards />
         </div>
         <SectionButtons />
         <div className="flex justify-between w-full">
           <h1>Send money</h1>
-          <h1>View all</h1>
+          <h1>Find one</h1>
         </div>
         <SectionSend />
         <div className="flex justify-between w-full">
           <h1>Movements</h1>
           <h1>View all</h1>
         </div>
-        <Navbar />
       </div>
+      <Navbar />
     </main>
   );
 }
