@@ -6,6 +6,8 @@ import Slider from "react-slick";
 
 import { useState } from "react";
 
+import fakeData from "../lib/fakeData";
+
 import Card from "./Card";
 
 export default function SliderCards() {
@@ -30,14 +32,13 @@ export default function SliderCards() {
           ref={setSliderRef}
           className="items-stretch justify-items-stretch w-full flex h-full gap-4 rounded-lg"
         >
-          {Array.from({ length: 5 }).map((item, index) => (
+          {fakeData.map((item, index) => (
             <Card
               key={index}
-              name=""
-              title=""
-              amount={index}
-              numWallet=""
-              category=""
+              name={item.name}
+              amount={item.amount}
+              numWallet={item.numWallet}
+              category={item.category}
             />
           ))}
         </Slider>
