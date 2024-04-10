@@ -1,5 +1,4 @@
 import Navbar from "@/components/Navbar";
-import { AxeIcon } from "lucide-react";
 import Link from "next/link";
 import {
   ShieldCheckIcon,
@@ -9,7 +8,7 @@ import {
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
+    <main className="flex min-h-screen flex-col items-center justify-between bg-zinc-900">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex pt-4">
         <div className="w-full">
           <Navbar />
@@ -34,37 +33,49 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="w-full h-screen" id="services">
-            <div className="w-full h-full flex flex-col items-center justify-between gap-10 pt-10">
-              <h1 className="text-4xl">Services</h1>
-              <div className="flex gap-4 w-full h-4/5">
-                <div className="bg-white rounded-t-xl w-1/3 h-full text-black flex flex-col gap-4 p-10 items-center">
-                  <ShieldCheckIcon className="h-6 w-6 text-gray-black" />
+          <div className="w-full h-auto" id="services">
+            <div className="flex flex-col items-center justify-between gap-10 pt-10">
+              <h1 className="text-4xl font-bold">Services</h1>
+              <div className="flex gap-4">
+                <div className="bg-white rounded-t-xl w-1/3 text-black flex flex-col gap-10 p-10">
+                  <div>
+                    <ShieldCheckIcon className="h-8 w-8 text-gray-black" />
+                  </div>
 
-                  <h1 className="font-bold text-2xl">100% Secure</h1>
-                  <p className="text-center">
-                    Con sólidos protocolos de seguridad, gestiona tarjetas y
-                    dinero de forma segura y sin complicaciones.
-                  </p>
+                  <div>
+                    <h1 className="font-bold text-2xl">100% Secure</h1>
+                    <p>
+                      With strong security protocols, manage cards and money
+                      safely and without complications.
+                    </p>
+                  </div>
                 </div>
-                <div className="bg-white rounded-t-xl w-1/3 h-full text-black flex flex-col gap-4 p-10 items-center">
-                  <ClockIcon className="h-6 w-6 text-gray-black" />
+                <div className="bg-white rounded-t-xl w-1/3 h-full text-black flex flex-col gap-10 p-10">
+                  <div>
+                    <ClockIcon className="h-8 w-8 text-gray-black" />
+                  </div>
 
-                  <h1 className="font-bold text-2xl">Save time</h1>
-                  <p className="text-center">
-                    Con funciones intuitivas simplifican gestiones financieras,
-                    ahorrando tiempo para lo que realmente importa en tu vida.
-                  </p>
+                  <div>
+                    <h1 className="font-bold text-2xl">Save time</h1>
+                    <p>
+                      With intuitive functions they simplify financial
+                      management, saving time for what really matters in your
+                      life.
+                    </p>
+                  </div>
                 </div>
-                <div className="bg-white rounded-t-xl w-1/3 h-full text-black flex flex-col gap-4 p-10 items-center">
-                  <SparklesIcon className="h-6 w-6 text-gray-black" />
+                <div className="bg-white rounded-t-xl w-1/3 h-full text-black flex flex-col gap-10 p-10">
+                  <div>
+                    <SparklesIcon className="h-8 w-8 text-gray-black" />
+                  </div>
 
-                  <h1 className="font-bold text-2xl">Minimalist</h1>
-                  <p className="text-center">
-                    Con un diseño limpio, funcionalidades esenciales. Administra
-                    tarjetas, realiza transferencias y gestiona finanzas
-                    eficientemente.
-                  </p>
+                  <div>
+                    <h1 className="font-bold text-2xl">Minimalist</h1>
+                    <p>
+                      With a clean design, essential functionalities. Manage
+                      cards, make transfers and manage finances efficiently.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -72,7 +83,7 @@ export default function Home() {
 
           <div className="w-full h-screen" id="pricing">
             <div className="w-full h-full flex flex-col items-center justify-center gap-10">
-              <h1 className="text-4xl">Pricing</h1>
+              <h1 className="text-4xl font-bold">Pricing</h1>
               <div className="flex gap-4 w-full h-3/4 items-center">
                 <div className="bg-white rounded-xl w-1/3 h-5/6"></div>
                 <div className="bg-white rounded-xl w-1/3 h-full"></div>
