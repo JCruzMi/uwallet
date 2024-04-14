@@ -5,12 +5,9 @@ import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
 
 import { useState } from "react";
-
-import fakeData from "../lib/fakeData";
-
 import Card from "./Card";
 
-export default function SliderCards() {
+export default function SliderCards(cards) {
   const [sliderRef, setSliderRef] = useState(null);
   const settings = {
     dots: false,
@@ -32,13 +29,12 @@ export default function SliderCards() {
           ref={setSliderRef}
           className="items-stretch justify-items-stretch w-full flex h-full gap-4 rounded-lg"
         >
-          {fakeData.map((item, index) => (
+          {cards.cards.map((item, index) => (
             <Card
-              key={index}
+              key={item.id + index}
               name={item.name}
               amount={item.amount}
-              numWallet={item.numWallet}
-              category={item.category}
+              number={item.number}
             />
           ))}
         </Slider>

@@ -50,7 +50,7 @@ export default function Register() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
         <div className="h-full flex justify-center items-center w-full">
-          <form onSubmit={onSubmit} className="w-1/4">
+          <form onSubmit={onSubmit} className="sm:w-1/4">
             <h1 className="text-slate-200 font-bold text-4xl mb-4">Register</h1>
 
             <label
