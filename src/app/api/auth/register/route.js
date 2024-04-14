@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
-const bcrypt = require("bcrypt");
+
 // #region Functions (1)
 
 export async function POST(request) {
@@ -32,7 +32,6 @@ export async function POST(request) {
     VALUES (${data.username}, ${data.email}, ${hashedPassword})
     RETURNING *`;
 
-
     const { password: _, ...user } = newUser.rows[0];
 
     return NextResponse.json(user);
@@ -49,3 +48,9 @@ export async function POST(request) {
 }
 
 // #endregion Functions (1)
+
+// #region Variables (1)
+
+const bcrypt = require("bcrypt");
+
+// #endregion Variables (1)

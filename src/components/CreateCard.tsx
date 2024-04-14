@@ -19,7 +19,7 @@ import { Button } from "./ui/Button";
 export default function CreateCard() {
   return (
     <Drawer>
-      <DrawerTrigger className="bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50 flex items-center justify-center w-[62px] rounded-lg h-full ">
+      <DrawerTrigger className="min-h-[140px] bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50 flex items-center justify-center w-[62px] rounded-lg h-full ">
         <PlusIcon className="h-6 w-6" />
       </DrawerTrigger>
       <DrawerContent>
