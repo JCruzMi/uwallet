@@ -1,9 +1,8 @@
-"use client";
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { Button } from '../ui/Button';
 
-import React from "react";
-import { useForm } from "react-hook-form";
-
-import { Button } from "../ui/Button";
+// #region Functions (1)
 
 export default function CreateCardForm() {
   const {
@@ -67,3 +66,5 @@ export default function CreateCardForm() {
     </form>
   );
 }
+
+// #endregion Functions (1)
