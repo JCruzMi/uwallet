@@ -1,12 +1,12 @@
-import bcrypt from "bcryptjs";
-import NextAuth from "next-auth";
-import Credentials from "next-auth/providers/credentials";
-import { z } from "zod";
+import bcrypt from 'bcryptjs';
+import NextAuth from 'next-auth';
+import Credentials from 'next-auth/providers/credentials';
+import { z } from 'zod';
+import { User } from '@/lib/definitions';
+import { sql } from '@vercel/postgres';
+import { authConfig } from './auth.config';
 
-import { User } from "@/lib/definitions";
-import { sql } from "@vercel/postgres";
-
-import { authConfig } from "./auth.config";
+// #region Functions (1)
 
 async function getUser(email: string): Promise<User | undefined> {
   try {
@@ -46,8 +46,17 @@ export const { auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
-  session: {
-    strategy: "jwt",
+  callbacks: {
+    async session({ session, token, user }) {
+      session.user = token.user as any
+      return session;
+    },
+    async jwt({ token, user, trigger, session }) {
+      if (user) {
+        token.user = user;
+      }
+      return token;
+    },
   },
 });
 
