@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import CreateCard from "@/components/CreateCard";
 import Navbar from "@/components/Navbar2";
@@ -13,17 +13,18 @@ const Dashboard = async () => {
   if (!session) {
     redirect("/");
   }
-  const [cards, setCards] = useState<[]>();
+  // const [cards, setCards] = useState<[]>();
 
-  useEffect(() => {
-    // getCards().then((res: any) => {
-    //   setCards(res);
-    // });
-  }, []);
+  // useEffect(() => {
+  //   getCards().then((res: any) => {
+  //     setCards(res);
+  //   });
+  // }, []);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between lg:px-24 p-4 w-full relative">
-      <div className="z-10 max-w-5xl w-full items-start justify-start font-mono text-sm gap-4 flex flex-col relative">
-        {/* <TopNavigation /> */}
+      Dashaboard
+      {/* <div className="z-10 max-w-5xl w-full items-start justify-start font-mono text-sm gap-4 flex flex-col relative">
+        <TopNavigation />
         <div className="flex flex-col gap-0 py-4">
           <p className="text-sm font-light">Total Balance</p>
           <p className="text-2xl font-semibold">$ 7.000.000</p>
@@ -44,7 +45,7 @@ const Dashboard = async () => {
           <h1>Movements</h1>
           <h1>View all</h1>
         </div>
-      </div>
+      </div> */}
       <Navbar />
     </main>
   );
