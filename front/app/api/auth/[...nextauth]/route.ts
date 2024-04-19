@@ -1,9 +1,9 @@
-import bcrypt from "bcryptjs";
-import NextAuth, { Account, User as AuthUser } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth from "next-auth";
+import { Account, User as AuthUser } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
+import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-
+import bcrypt from "bcryptjs";
 import User from "@/models/User";
 import connect from "@/utils/db";
 
@@ -35,14 +35,14 @@ export const authOptions: any = {
         }
       },
     }),
-    // GithubProvider({
-    //   clientId: process.env.GITHUB_ID ?? "",
-    //   clientSecret: process.env.GITHUB_SECRET ?? "",
-    // }),
-    // GoogleProvider({
-    //   clientId: process.env.GOOGLE_ID ?? "",
-    //   clientSecret: process.env.GOOGLE_SECRET ?? "",
-    // }),
+    GithubProvider({
+      clientId: process.env.GITHUB_ID ?? "",
+      clientSecret: process.env.GITHUB_SECRET ?? "",
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID ?? "",
+      clientSecret: process.env.GOOGLE_SECRET ?? "",
+    }),
     // ...add more providers here
   ],
   callbacks: {
@@ -69,7 +69,7 @@ export const authOptions: any = {
         }
       }
 
-      if (account?.provider == "google") {
+      if(account?.provider == "google"){
         await connect();
         try {
           const existingUser = await User.findOne({ email: user.email });
@@ -87,6 +87,7 @@ export const authOptions: any = {
           return false;
         }
       }
+
     },
   },
 };
