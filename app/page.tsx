@@ -5,14 +5,14 @@ import { ClockIcon, ShieldCheckIcon, SparklesIcon } from '@heroicons/react/24/ou
 
 export default function Home() {
   return (
-    <div className="w-full">
+    <div className="w-full">      
       <div className="w-full h-[calc(100vh-69px)]">
         <div className="w-full h-full grid grid-cols-2 gap-10">
           <div className="flex flex-col justify-center items-start gap-4 w-2/3">
             <h1 className="text-4xl">Título provisional para cambiar</h1>
             <p>
-              Texto provisional para cambiar en fuente chiquita cuando se tenga
-              algo
+              Texto provisional para cambiar en fuente chiquita cuando se
+              tenga algo
             </p>
             <Link href="/register">
               <button className="bg-white text-black p-2 rounded-md">
@@ -38,8 +38,8 @@ export default function Home() {
               <div>
                 <h1 className="font-bold text-2xl">100% Secure</h1>
                 <p>
-                  With strong security protocols, manage cards and money safely
-                  and without complications.
+                  With strong security protocols, manage cards and money
+                  safely and without complications.
                 </p>
               </div>
             </div>
@@ -51,8 +51,9 @@ export default function Home() {
               <div>
                 <h1 className="font-bold text-2xl">Save time</h1>
                 <p>
-                  With intuitive functions they simplify financial management,
-                  saving time for what really matters in your life.
+                  With intuitive functions they simplify financial
+                  management, saving time for what really matters in your
+                  life.
                 </p>
               </div>
             </div>
@@ -64,8 +65,8 @@ export default function Home() {
               <div>
                 <h1 className="font-bold text-2xl">Minimalist</h1>
                 <p>
-                  With a clean design, essential functionalities. Manage cards,
-                  make transfers and manage finances efficiently.
+                  With a clean design, essential functionalities. Manage
+                  cards, make transfers and manage finances efficiently.
                 </p>
               </div>
             </div>
