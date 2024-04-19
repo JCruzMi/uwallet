@@ -1,28 +1,28 @@
-import Image from 'next/image';
-import defaultAvatar from '../../public/defaultAvatar.jpg';
+import Image from "next/image";
 
-// #region Type aliases (1)
+import defaultAvatar from "../../public/defaultAvatar.jpg";
 
 type Avatar = {
+  letter?: string;
   imgAvatar?: string;
 };
 
-// #endregion Type aliases (1)
-
-// #region Functions (1)
-
-export default function Avatar({ imgAvatar }: Avatar) {
+export default function Avatar({ letter, imgAvatar }: Avatar) {
   return (
-    <div className="h-10 w-10 rounded-full bg-primary">
-      <Image
-        src={imgAvatar || defaultAvatar}
-        alt="Avatar"
-        width={40}
-        height={40}
-        className="rounded-full"
-      />
+    <div className="h-10 w-10 rounded-full bg-secondary flex justify-center items-start">
+      {letter ? (
+        <h2 className="text-3xl font-bold text-center text-primary">
+          {letter[0]}
+        </h2>
+      ) : (
+        <Image
+          src={imgAvatar || defaultAvatar}
+          alt="Avatar"
+          width={40}
+          height={40}
+          className="rounded-full"
+        />
+      )}
     </div>
   );
 }
-
-// #endregion Functions (1)

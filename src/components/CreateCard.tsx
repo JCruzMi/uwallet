@@ -14,7 +14,6 @@ import {
 import { PlusIcon } from "@heroicons/react/16/solid";
 
 import CreateCardForm from "./forms/CreateCardForm";
-import { Button } from "./ui/Button";
 
 export default function CreateCard() {
   return (
