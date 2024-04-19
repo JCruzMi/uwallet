@@ -1,7 +1,7 @@
-// #region Type aliases (1)
-import { Card as CardType } from "@/lib/definitions";
+import { Card as CardType } from '@/lib/definitions';
+import Format from '../utils/format';
 
-import Format from "../utils/format";
+// #region Functions (1)
 
 export default function Card({ name, amount, number }: CardType) {
   return (

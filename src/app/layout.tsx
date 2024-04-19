@@ -1,6 +1,8 @@
-import "./globals.css";
+import './globals.css';
+import { GeistSans } from 'geist/font/sans';
+import Providers from './Providers';
 
-import { GeistSans } from "geist/font/sans";
+// #region Functions (1)
 
 export default function RootLayout({
   children,
@@ -9,7 +11,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={GeistSans.className}>{children}</body>
+      <Providers>
+        <body className={GeistSans.className}>{children}</body>
+      </Providers>
     </html>
   );
 }
