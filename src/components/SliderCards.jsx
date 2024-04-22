@@ -11,11 +11,15 @@ import CreateCard from "./CreateCard";
 
 export default function SliderCards() {
   const [cards, setCards] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getCards().then((res) => {
-      setCards(res);
-    });
+    setLoading(true);
+    getCards()
+      .then((res) => {
+        setCards(res);
+      })
+      .finally(() => setLoading(false));
   }, []);
   const [sliderRef, setSliderRef] = useState(null);
   const settings = {
@@ -42,14 +46,29 @@ export default function SliderCards() {
             ref={setSliderRef}
             className="items-stretch justify-items-stretch w-full flex h-full gap-4 rounded-lg"
           >
-            {cards?.map((item, index) => (
-              <Card
-                key={item.id + index}
-                name={item.name}
-                amount={item.amount}
-                number={item.number}
-              />
-            ))}
+            {loading ? (
+              new Array(4).fill("_").map((index) => {
+                return (
+                  <div
+                    key={index}
+                    className="animate-pulse bg-secondary max-w-[230px] min-w-[230px] h-full w-full max-h-[140px] min-h-[140px] rounded-lg"
+                  ></div>
+                );
+              })
+            ) : cards.length > 0 ? (
+              cards.map((item, index) => (
+                <Card
+                  key={item.id + index}
+                  name={item.name}
+                  amount={item.amount}
+                  number={item.number}
+                />
+              ))
+            ) : (
+              <div className="animate-pulse bg-secondary max-w-[230px] min-w-[230px] h-full w-full max-h-[140px] min-h-[140px] rounded-lg">
+                Not cards allowed
+              </div>
+            )}
           </Slider>
         </div>
       </div>
