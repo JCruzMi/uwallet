@@ -17,7 +17,7 @@ const Dashboard = async () => {
           <p className="text-sm font-light">Total Balance</p>
           <Balance />
         </div>
-        <div className="flex flex-row w-full gap-4 overflow-x-hidden">
+        <div className="flex flex-row w-full gap-4 max-h-[140px] overflow-hidden">
           <SliderCards />
         </div>
         <SectionButtons />
