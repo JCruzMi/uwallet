@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-import { cards as getCards } from "@/lib/actions";
+import { getCards } from "@/lib/actions";
 import { Card } from "@/lib/definitions";
 import Format from "@/utils/format";
 
