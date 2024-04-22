@@ -6,7 +6,7 @@ import Slider from "react-slick";
 
 import { useEffect, useState } from "react";
 import Card from "./Card";
-import { cards as getCards } from "@/lib/actions";
+import { getCards } from "@/lib/actions";
 import CreateCard from "./CreateCard";
 
 export default function SliderCards() {
