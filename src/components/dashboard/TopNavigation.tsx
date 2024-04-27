@@ -11,7 +11,7 @@ export default async function Navbar() {
       <div className="flex gap-4 flex-row">
         <Avatar letter={session?.user?.username[0]} />
         <div className="flex flex-col gap-0 h-full items-start justify-center">
-          <p className="text-sm font-light">Good moorning!</p>
+          <p className="text-sm font-light">Good morning!</p>
           <p className="font-semibold">{session?.user?.email}</p>
         </div>
       </div>
@@ -23,7 +23,7 @@ export default async function Navbar() {
         }}
       >
         <Button className="w-10 !p-0 flex justify-center items-center">
-          <ArrowLeftStartOnRectangleIcon className="h-6 w-6" />
+          <ArrowLeftStartOnRectangleIcon className="h-5 w-5" />
         </Button>
       </form>
     </div>

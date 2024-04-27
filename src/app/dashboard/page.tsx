@@ -19,7 +19,6 @@ const Dashboard = async () => {
         <div className="flex flex-row w-full gap-4 max-h-[140px] overflow-hidden">
           <SliderCards />
         </div>
-        <SectionButtons />
         <div className="flex justify-between w-full">
           <h1>Send money</h1>
           <h1>Find one</h1>
