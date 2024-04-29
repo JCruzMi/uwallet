@@ -3,6 +3,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
+import { createCard } from "@/lib/cards";
+
 import { Button } from "../ui/Button";
 
 export default function CreateCardForm() {
@@ -18,7 +20,11 @@ export default function CreateCardForm() {
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
+    let obj = {
+      name: data.name.toString(),
+      number: data.number.toString(),
+    };
+    createCard(obj.name.toString(), obj.number.toString());
   });
   return (
     <form onSubmit={onSubmit} className="w-1/4">
