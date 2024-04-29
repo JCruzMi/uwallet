@@ -2,8 +2,8 @@ import { Button } from "./ui/Button";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { BanknotesIcon } from "@heroicons/react/24/outline";
 import SendMoney from "./SendMoney";
-import ReceiveMoney from "./ReceiveMoney";
 import WithdrawMoney from "./WithdrawMoney";
+import DepositMoney from "./DepositMoney";
 // #region Functions (1)
 
 export default function SectionButtons() {
@@ -12,7 +12,7 @@ export default function SectionButtons() {
   return (
     <div className="flex justify-between w-full max-w-sm text-xs text-white">
       <SendMoney />
-      <ReceiveMoney />
+      <DepositMoney />
       <WithdrawMoney />
       <div className={buttonClasses}>
         <Button>
