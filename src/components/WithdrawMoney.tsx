@@ -11,10 +11,10 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-
-import { Button } from "./ui/Button";
 import { BanknotesIcon } from "@heroicons/react/24/outline";
+
 import WithdrawMoneyForm from "./forms/WithdrawMoney";
+import { Button } from "./ui/Button";
 
 export default function WithdrawMoney() {
   return (
@@ -32,10 +32,6 @@ export default function WithdrawMoney() {
         </DrawerHeader>
         <DrawerFooter className="flex items-center justify-center">
           <WithdrawMoneyForm />
-
-          <DrawerClose className="flex h-10 items-center justify-center rounded-lg bg-pink-500 px-4 text-sm font-medium text-white transition-colors hover:bg-pink-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-500 active:bg-pink-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50 w-1/4">
-            Close
-          </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
