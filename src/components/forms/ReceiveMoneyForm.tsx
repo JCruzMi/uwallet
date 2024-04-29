@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 import { Button } from "../ui/Button";
 
-export default function CreateCardForm() {
+export default function ReceiveMoneyForm() {
   const {
     register,
     handleSubmit,
