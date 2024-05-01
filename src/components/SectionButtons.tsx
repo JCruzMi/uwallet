@@ -1,6 +1,7 @@
 import SendMoney from "./SendMoney";
 import WithdrawMoney from "./WithdrawMoney";
 import DepositMoney from "./DepositMoney";
+import DeleteCard from "./DeleteCard";
 // #region Functions (1)
 
 export default function SectionButtons({ numberSender, amountCard }: { numberSender: string; amountCard: number }) {
