@@ -1,25 +1,14 @@
-import { Button } from "./ui/Button";
-import { PlusIcon } from "@heroicons/react/24/outline";
-import { BanknotesIcon } from "@heroicons/react/24/outline";
 import SendMoney from "./SendMoney";
 import WithdrawMoney from "./WithdrawMoney";
 import DepositMoney from "./DepositMoney";
 // #region Functions (1)
 
-export default function SectionButtons() {
-  const buttonClasses = "flex flex-col items-center";
-
+export default function SectionButtons({ numberSender, amountCard }: { numberSender: string; amountCard: number }) {
   return (
-    <div className="flex justify-between w-full max-w-sm text-xs text-white">
-      <SendMoney />
+    <div className="flex justify-center w-full max-w-sm text-xs text-white gap-4">
+      <SendMoney numberSender={numberSender} amountCard={amountCard}/>
       <DepositMoney />
       <WithdrawMoney />
-      <div className={buttonClasses}>
-        <Button>
-          <PlusIcon className="h-4 w-4" />
-        </Button>
-        Others
-      </div>
     </div>
   );
 }

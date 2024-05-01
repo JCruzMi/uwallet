@@ -16,7 +16,7 @@ import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import SendMoneyForm from "./forms/SendMoneyForm";
 import { Button } from "./ui/Button";
 
-export default function SendMoney() {
+export default function SendMoney({ numberSender, amountCard }: { numberSender: string; amountCard: number }) {
   return (
     <Drawer>
       <DrawerTrigger className="flex flex-col items-center">
@@ -31,7 +31,7 @@ export default function SendMoney() {
           <DrawerDescription>Transfer money to another card effortlessly.</DrawerDescription>
         </DrawerHeader>
         <DrawerFooter className="flex items-center justify-center">
-          <SendMoneyForm />
+          <SendMoneyForm numberSender={numberSender} amountCard={amountCard}/>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

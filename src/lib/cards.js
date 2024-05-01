@@ -41,10 +41,10 @@ export async function getCards(user_id) {
   }
 }
 
-export async function sendMoney(id_receiver, id_sender, amount) {
+export async function sendMoney(number_sender, number_receiver, amount) {
   try {
-    `update cards set amount = amount + ${amount} where id = ${id_receiver}`;
-    `update cards set amount = amount - ${amount} where id = ${id_sender}`;
+    await sql`update cards set amount = amount - ${amount} where number = ${number_sender}`;
+    await sql`update cards set amount = amount + ${amount} where number = ${number_receiver}`;
   } catch (error) {
     return NextResponse.json(error);
   }

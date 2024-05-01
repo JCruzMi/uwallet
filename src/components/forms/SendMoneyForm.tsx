@@ -4,21 +4,28 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 import { Button } from "../ui/Button";
+import { sendMoney } from "@/lib/cards";
 
-export default function SendMoneyForm() {
+export default function SendMoneyForm({ numberSender, amountCard }: { numberSender: string; amountCard: number }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
+      numberSender: numberSender,
       number: "",
-      amount: 0
+      amount: 0,
     },
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
+    let obj = {
+      numberSender: numberSender.toString(),
+      number: data.number.toString(),
+      amount: data.amount.toString()
+    };
+    sendMoney(obj.numberSender.toString(), obj.number.toString(), obj.amount.toString());
   });
 
   const validateAmount = (value: number) => {
@@ -28,7 +35,7 @@ export default function SendMoneyForm() {
     if (value <= 0) {
       return "Amount must be greater than zero";
     }
-    if (value > 1000) {
+    if (value > amountCard) { 
       return "You don't have enough money in this card";
     }
     return true;
@@ -62,7 +69,7 @@ export default function SendMoneyForm() {
         Amount
       </label>
       <input
-        type="number"
+        type="text"
         {...register("amount", {
           required: {
             value: true,
