@@ -19,7 +19,7 @@ export default function CreateCardForm() {
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    createCard(data.name.toString());
+    createCard(JSON.parse(JSON.stringify(data.name)));
   });
   return (
     <form onSubmit={onSubmit} className="w-1/4">
