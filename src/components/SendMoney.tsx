@@ -28,7 +28,7 @@ export default function SendMoney({ numberSender, amountCard }: { numberSender: 
       <DrawerContent>
         <DrawerHeader className="w-1/4 px-1 flex justify-start flex-col items-start mx-auto">
           <DrawerTitle>Send Money</DrawerTitle>
-          <DrawerDescription>Transfer money to another card effortlessly.</DrawerDescription>
+          <DrawerDescription>Transfer money to another card.</DrawerDescription>
         </DrawerHeader>
         <DrawerFooter className="flex items-center justify-center">
           <SendMoneyForm numberSender={numberSender} amountCard={amountCard}/>

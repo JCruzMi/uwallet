@@ -4,9 +4,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 import { Button } from "../ui/Button";
-import { sendMoney } from "@/lib/cards";
+import { deleteCard } from "@/lib/cards";
 
-export default function DeleteCardForm() {
+export default function DeleteCardForm({ number }: { number: string }) {
   const {
     register,
     handleSubmit,
@@ -19,7 +19,11 @@ export default function DeleteCardForm() {
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    
+    let obj = {
+      number: data.number.toString(),
+    };
+    deleteCard(obj.number.toString()); 
+    reset();
   });
   
   return (
@@ -37,6 +41,14 @@ export default function DeleteCardForm() {
             value: true,
             message: "Number card is required",
           },
+          validate: {
+            validCard: (value) => {
+              if (value !== number) {
+                return "Card number does not match";
+              }
+              return true;
+            }
+          }
         })}
         className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
         placeholder="1000 1000 1000 1000"

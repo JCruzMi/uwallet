@@ -1,7 +1,7 @@
 import { Card as CardType } from '@/lib/definitions';
 import Format from '../utils/format';
 import SectionButtons from './SectionButtons';
-import { EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
+import { DropdownMenuDemo } from './DropdownMenuDemo';
 // #region Functions (1)
 
 export default function Card({ name, amount, number}: CardType) {
@@ -11,7 +11,7 @@ export default function Card({ name, amount, number}: CardType) {
       <div>
         <div className='flex items-center justify-between'>
           <div>{name}</div>
-          <EllipsisHorizontalIcon className="h-4 w-4 cursor-pointer" />
+          <DropdownMenuDemo number={number}/>
         </div>
         <div className='text-base'>{Format(amount)}</div>
         <div>{number}</div>
