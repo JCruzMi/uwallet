@@ -18,7 +18,7 @@ export async function createCard(name) {
       const data = await sql`INSERT INTO
          cards (id ,name, number, user_id, amount, created_at) VALUES 
          (${id}, ${name}, ${card}, ${userId}, ${amount}, ${created_at})`;
-      console.log(data);
+      return res.status(200).json({ data: data });
     }
   } catch (error) {
     return res.status(400).json({ data: error });
