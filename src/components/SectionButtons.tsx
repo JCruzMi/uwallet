@@ -15,8 +15,8 @@ export default function SectionButtons({
   return (
     <div className="flex justify-center w-full max-w-sm text-xs text-white gap-4">
       <SendMoney numberSender={numberSender} amountCard={amountCard} />
-      <DepositMoney />
-      <WithdrawMoney />
+      <DepositMoney number={numberSender} amount={amountCard} />
+      <WithdrawMoney number={numberSender} amount={amountCard} />
     </div>
   );
 }
