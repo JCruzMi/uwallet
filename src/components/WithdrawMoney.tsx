@@ -14,15 +14,14 @@ import {
 import { BanknotesIcon } from "@heroicons/react/24/outline";
 
 import WithdrawMoneyForm from "./forms/WithdrawMoney";
-import { Button } from "./ui/Button";
 
 export default function WithdrawMoney({ number, amount}: { number: string, amount: number}) {
   return (
     <Drawer>
-      <DrawerTrigger className="flex flex-col items-center">
-        <Button>
-          <BanknotesIcon className="h-4 w-4" />
-        </Button>
+      <DrawerTrigger className="flex gap-2 items-center p-1 text-sm">
+        <div className="text-sm flex items-center justify-center h-5 w-5 rounded-full bg-white bg-opacity-10 transition-colors hover:bg-opacity-15">
+          <BanknotesIcon className="h-3 w-3" />
+        </div>
         Withdraw
       </DrawerTrigger>
       <DrawerContent>

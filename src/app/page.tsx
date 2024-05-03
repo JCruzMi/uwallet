@@ -8,7 +8,7 @@ import { ClockIcon, ShieldCheckIcon, SparklesIcon } from '@heroicons/react/24/ou
 export default function Home() {
   return (
     <SessionProvider>
-      <main className="flex min-h-screen flex-col items-center justify-between">
+      <main className="bg-zinc-900 flex min-h-screen flex-col items-center justify-between">
         <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex pt-4">
           <div className="w-full">
             <Navbar />
@@ -21,7 +21,7 @@ export default function Home() {
                     tenga algo
                   </p>
                   <Link href="/register">
-                    <button className="bg-white text-black p-2 rounded-md">
+                    <button className="bg-gradient-to-r from-pink-300 to-purple-500 text-black font-bold p-2 rounded-md">
                       Get started
                     </button>
                   </Link>
@@ -36,9 +36,9 @@ export default function Home() {
               <div className="flex flex-col items-center justify-between gap-10 pt-10">
                 <h1 className="text-4xl font-bold">Services</h1>
                 <div className="flex gap-4">
-                  <div className="bg-white rounded-t-xl w-1/3 text-black flex flex-col gap-10 p-10">
+                  <div className="bg-gradient-to-b from-white to-pink-300 rounded-t-xl w-1/3 text-black flex flex-col gap-10 p-10">
                     <div>
-                      <ShieldCheckIcon className="h-8 w-8 text-gray-black" />
+                      <ShieldCheckIcon className="h-8 w-8" />
                     </div>
 
                     <div>
@@ -49,7 +49,7 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
-                  <div className="bg-white rounded-t-xl w-1/3 h-full text-black flex flex-col gap-10 p-10">
+                  <div className="bg-gradient-to-b from-white to-purple-300 rounded-t-xl w-1/3 h-full text-black flex flex-col gap-10 p-10">
                     <div>
                       <ClockIcon className="h-8 w-8 text-gray-black" />
                     </div>
@@ -63,7 +63,7 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
-                  <div className="bg-white rounded-t-xl w-1/3 h-full text-black flex flex-col gap-10 p-10">
+                  <div className="bg-gradient-to-b from-white to-pink-300 rounded-t-xl w-1/3 h-full text-black flex flex-col gap-10 p-10">
                     <div>
                       <SparklesIcon className="h-8 w-8 text-gray-black" />
                     </div>

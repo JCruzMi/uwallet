@@ -68,9 +68,9 @@ export async function withdrawMoney(number, amount) {
   }
 }
 
-export async function updateCard(id, name) {
+export async function updateCard(number, name) {
   try {
-    `update cards set name = ${name} where id = ${id}`;
+    await sql`update cards set name = ${name} where number = ${number}`;
   } catch (error) {
     return res.status(400).json({ data: error });
   }
