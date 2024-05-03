@@ -14,7 +14,7 @@ export default function DepositMoneyForm({ number, amount}: { number: string, am
     reset
   } = useForm({
     defaultValues: {
-      number: "",
+      number: number,
       amount: "0",
     },
   });
@@ -30,41 +30,6 @@ export default function DepositMoneyForm({ number, amount}: { number: string, am
 
   return (
     <form onSubmit={onSubmit} className="w-1/4">
-      <label
-        htmlFor="Number card"
-        className="text-slate-500 mb-2 block text-sm"
-      >
-        Number card
-      </label>
-      <input
-        type="text"
-        {...register("number", {
-          required: {
-            value: true,
-            message: "Number card is required",
-          },
-          validate: {
-            notSame: (value) => {
-              if (value !== number) {
-                return "Card number is not the same";
-              }
-            }
-          },
-        })}
-        className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
-        placeholder="1000 1000 1000 1000"
-        onChange={(e) => {
-          let value = e.target.value.replace(/\D/g, "");
-          value = value.slice(0, 16);
-          value = value.replace(/(.{4})/g, "$1 ").trim();
-          e.target.value = value;
-        }}
-      />
-
-      {errors.number && (
-        <span className="text-red-500 text-xs">{errors.number.message}</span>
-      )}
-
       <label htmlFor="amount" className="text-slate-500 mb-2 block text-sm">
         Amount
       </label>
@@ -78,9 +43,6 @@ export default function DepositMoneyForm({ number, amount}: { number: string, am
               validAmount: (value) => {
                 if (parseInt(value) <= 0) {
                   return "Amount must be greater than zero";
-                }
-                if (parseInt(value) > amount) { 
-                  return "You don't have enough money in this card";
                 }
                 return true;
               }

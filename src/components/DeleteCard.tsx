@@ -13,20 +13,16 @@ import {
 } from "@/components/ui/drawer";
 import { MinusIcon } from "@heroicons/react/24/outline";
 
-
-import { Button } from "./ui/Button";
 import DeleteCardForm from "./forms/DeleteCardForm";
 
 export default function DeleteCard({ number }: { number: string }) {
   return (
     <Drawer>
-      <DrawerTrigger className="flex flex-col items-center">
-        <div className="flex items-center gap-2 p-1 text-sm">
-          <Button className="!h-4 !w-4">
-            <MinusIcon className="h-2 w-2" />
-          </Button>
-          Delete
+      <DrawerTrigger className="flex gap-2 items-center p-1 text-sm">
+        <div className="text-sm flex items-center justify-center h-5 w-5 rounded-full bg-white bg-opacity-10 transition-colors hover:bg-opacity-15">
+          <MinusIcon className="h-3 w-3" />
         </div>
+        Delete
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="w-1/4 px-1 flex justify-start flex-col items-start mx-auto">

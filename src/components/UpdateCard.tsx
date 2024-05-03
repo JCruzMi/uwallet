@@ -11,32 +11,26 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
+import { CreditCardIcon } from "@heroicons/react/24/outline";
+import UpdateCardForm from "./forms/UpdateCardForm";
 
-import SendMoneyForm from "./forms/SendMoneyForm";
 
-export default function SendMoney({
-  numberSender,
-  amountCard,
-}: {
-  numberSender: string;
-  amountCard: number;
-}) {
+export default function UpdateCard({ number }: { number: string }) {
   return (
     <Drawer>
       <DrawerTrigger className="flex gap-2 items-center p-1 text-sm">
         <div className="text-sm flex items-center justify-center h-5 w-5 rounded-full bg-white bg-opacity-10 transition-colors hover:bg-opacity-15">
-          <PaperAirplaneIcon className="h-3 w-3" />
+          <CreditCardIcon className="h-3 w-3" />
         </div>
-        Send
+        Update
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="w-1/4 px-1 flex justify-start flex-col items-start mx-auto">
-          <DrawerTitle>Send Money</DrawerTitle>
-          <DrawerDescription>Transfer money to another card.</DrawerDescription>
+          <DrawerTitle>Update Card</DrawerTitle>
+          <DrawerDescription>Modify the name of the card.</DrawerDescription>
         </DrawerHeader>
         <DrawerFooter className="flex items-center justify-center">
-          <SendMoneyForm numberSender={numberSender} amountCard={amountCard} />
+          <UpdateCardForm number={number} />
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

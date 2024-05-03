@@ -3,7 +3,6 @@
 import Balance from "@/components/Balance";
 import Navbar from "@/components/dashboard/Navbar";
 import TopNavigation from "@/components/dashboard/TopNavigation";
-import SectionButtons from "@/components/SectionButtons";
 import SectionSend from "@/components/SectionSend";
 import SliderCards from "@/components/SliderCards";
 

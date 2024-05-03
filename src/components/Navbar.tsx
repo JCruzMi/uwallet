@@ -5,7 +5,9 @@ export default function Navbar() {
     <div className="flex justify-between mb-4">
       <div className="flex items-center gap-20">
         <Link href="/">
-          <h1 className="font-bold text-lg">HKmoney</h1>
+          <div className="bg-gradient-to-r from-pink-300 to-purple-500 text-transparent bg-clip-text">
+            <h1 className="font-bold text-lg">HKmoney</h1>
+          </div>
         </Link>
         <div className="flex gap-10">
           <Link href="/#services">
@@ -17,7 +19,7 @@ export default function Navbar() {
         </div>
       </div>
       <Link href="/login">
-        <button className="bg-white text-black p-2 rounded-md">Log in</button>
+        <button className="font-bold bg-gradient-to-r from-pink-300 to-purple-500 text-black p-2 rounded-md">Log in</button>
       </Link>
     </div>
   );
