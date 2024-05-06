@@ -12,7 +12,7 @@ export default function Home() {
         <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex pt-4">
           <div className="w-full">
             <Navbar />
-            <div className="w-full h-[calc(100vh-69px)]">
+            <div className="w-full h-[calc(100vh-69px)] px-4">
               <div className="w-full h-full grid grid-cols-2 gap-10">
                 <div className="flex flex-col justify-center items-start gap-4 w-2/3">
                   <h1 className="text-4xl">Título provisional para cambiar</h1>
@@ -32,7 +32,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="w-full h-auto" id="services">
+            <div className="w-full h-auto px-4" id="services">
               <div className="flex flex-col items-center justify-between gap-10 pt-10">
                 <h1 className="text-4xl font-bold">Services</h1>
                 <div className="flex gap-4">
@@ -80,7 +80,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="w-full h-screen" id="pricing">
+            <div className="w-full h-screen px-4" id="pricing">
               <div className="w-full h-full flex flex-col items-center justify-center gap-10">
                 <h1 className="text-4xl font-bold">Pricing</h1>
                 <div className="flex gap-4 w-full h-3/4 items-center">
