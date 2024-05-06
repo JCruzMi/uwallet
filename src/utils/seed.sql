@@ -17,18 +17,24 @@ CREATE TABLE cards (
   created_at TIMESTAMP NOT NULL default NOW()
 );
   
-INSERT INTO cards (id, amount, name, user_id) VALUES ('0000000000000000', 0, 'admin', 1);
-INSERT INTO cards (id, amount, name, user_id) VALUES ('0000000000000001', 0, 'admin', 1);
+INSERT INTO cards (id, amount, name, user_id) VALUES ('0000000000000000', 0, 'admin', 2);
+INSERT INTO cards (id, amount, name, user_id) VALUES ('0000000000000001', 0, 'admin', 2);
 
 CREATE TABLE movements (
   id SERIAL PRIMARY KEY, 
   amount INT,
   number_sender VARCHAR (50) NOT NULL,
   number_receiver VARCHAR (50) NOT NULL,
+  user_id_sender INT NOT NULL,
+  user_id_receiver INT NOT NULL,
+  FOREIGN KEY(user_id_sender)
+    REFERENCES users(id),
+  FOREIGN KEY(user_id_receiver)
+    REFERENCES users(id),
   FOREIGN KEY(number_sender) 
     REFERENCES cards(id),
   FOREIGN KEY(number_receiver) 
     REFERENCES cards(id),
   created_at TIMESTAMP NOT NULL default NOW()
 );
-  
+

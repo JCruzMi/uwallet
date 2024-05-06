@@ -28,15 +28,10 @@ export default function SendMoneyForm({
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    let obj = {
-      numberSender: numberSender.toString(),
-      number: data.number.toString(),
-      amount: data.amount.toString(),
-    };
     sendMoney(
-      obj.numberSender.toString(),
-      obj.number.toString(),
-      obj.amount.toString()
+      JSON.parse(JSON.stringify(data.numberSender)),
+      JSON.parse(JSON.stringify(data.number)),
+      JSON.parse(JSON.stringify(data.amount))
     );
     reset();
   });
