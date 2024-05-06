@@ -3,15 +3,22 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-import { Button } from "../ui/Button";
 import { sendMoney } from "@/lib/cards";
 
-export default function SendMoneyForm({ numberSender, amountCard }: { numberSender: string; amountCard: number }) {
+import { Button } from "../ui/Button";
+
+export default function SendMoneyForm({
+  numberSender,
+  amountCard,
+}: {
+  numberSender: string;
+  amountCard: number;
+}) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm({
     defaultValues: {
       numberSender: numberSender,
@@ -21,15 +28,14 @@ export default function SendMoneyForm({ numberSender, amountCard }: { numberSend
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    let obj = {
-      numberSender: numberSender.toString(),
-      number: data.number.toString(),
-      amount: data.amount.toString()
-    };
-    sendMoney(obj.numberSender.toString(), obj.number.toString(), obj.amount.toString()); 
+    sendMoney(
+      JSON.parse(JSON.stringify(data.numberSender)),
+      JSON.parse(JSON.stringify(data.number)),
+      JSON.parse(JSON.stringify(data.amount))
+    );
     reset();
   });
-  
+
   return (
     <form onSubmit={onSubmit} className="w-1/4">
       <label
@@ -50,7 +56,7 @@ export default function SendMoneyForm({ numberSender, amountCard }: { numberSend
               if (value == numberSender) {
                 return "Cannot send money to the same card";
               }
-            }
+            },
           },
         })}
         className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
@@ -71,7 +77,9 @@ export default function SendMoneyForm({ numberSender, amountCard }: { numberSend
         Amount
       </label>
       <div className="relative">
-        <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">$</span>
+        <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
+          $
+        </span>
         <input
           type="text"
           {...register("amount", {
@@ -81,12 +89,12 @@ export default function SendMoneyForm({ numberSender, amountCard }: { numberSend
                 if (parseInt(value) <= 0) {
                   return "Amount must be greater than zero";
                 }
-                if (parseInt(value) > amountCard) { 
+                if (parseInt(value) > amountCard) {
                   return "You don't have enough money in this card";
                 }
                 return true;
-              }
-            }
+              },
+            },
           })}
           className="p-3 pl-10 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
           placeholder="0"

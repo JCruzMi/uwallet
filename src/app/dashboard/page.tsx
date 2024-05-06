@@ -3,6 +3,7 @@
 import Balance from "@/components/Balance";
 import Navbar from "@/components/dashboard/Navbar";
 import TopNavigation from "@/components/dashboard/TopNavigation";
+import Movements from "@/components/Movements";
 import SectionSend from "@/components/SectionSend";
 import SliderCards from "@/components/SliderCards";
 
@@ -27,6 +28,7 @@ const Dashboard = async () => {
           <h1>Movements</h1>
           <h1>View all</h1>
         </div>
+        <Movements />
       </div>
       <Navbar />
     </main>
