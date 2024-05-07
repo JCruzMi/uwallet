@@ -9,7 +9,7 @@ type Avatar = {
 
 export default function Avatar({ letter, imgAvatar }: Avatar) {
   return (
-    <div className="h-10 w-10 rounded-full bg-secondary flex justify-center items-start">
+    <div className="h-10 w-10 rounded-full bg-secondary flex justify-center items-center">
       {letter ? (
         <h2 className="text-3xl font-bold text-center text-primary">
           {letter[0]}

@@ -1,11 +1,15 @@
 import Link from "next/link";
 
+// #region Functions (1)
+
 export default function Navbar() {
   return (
-    <div className="flex justify-between mb-4">
-      <div className="flex items-center gap-20">
+    <div className="flex justify-between items-center mb-4 px-4">
+      <div className="flex items-center gap-4 md:gap-20">
         <Link href="/">
-          <h1 className="font-bold text-lg">HKmoney</h1>
+          <div className="bg-gradient-to-r from-pink-300 to-purple-500 text-transparent bg-clip-text">
+            <h1 className="font-bold text-lg">HKmoney</h1>
+          </div>
         </Link>
         <div className="flex gap-10">
           <Link href="/#services">
@@ -17,8 +21,12 @@ export default function Navbar() {
         </div>
       </div>
       <Link href="/login">
-        <button className="bg-white text-black p-2 rounded-md">Log in</button>
+        <button className="font-bold bg-gradient-to-r from-pink-300 to-purple-500 text-black p-2 rounded-md">
+          Log in
+        </button>
       </Link>
     </div>
   );
 }
+
+// #endregion Functions (1)

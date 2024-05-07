@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 
+
+
 // #region Interfaces (1)
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -16,15 +18,15 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 export function Button({ children, className, ...rest }: ButtonProps) {
   return (
-    <button
-      {...rest}
-      className={clsx(
-        'flex h-10 items-center rounded-lg bg-blue-500 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50',
-        className,
-      )}
-    >
+      <button
+        {...rest}
+        className={clsx(
+          'text-sm flex items-center justify-center h-8 w-8 rounded-full bg-white bg-opacity-10 transition-colors hover:bg-opacity-15',
+          className,
+        )}
+      >
       {children}
-    </button>
+      </button>
   );
       }
 

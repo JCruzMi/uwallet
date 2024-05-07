@@ -3,24 +3,32 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-import { createCard } from "@/lib/cards";
+import { deleteCard, updateCard } from "@/lib/cards";
 
 import { Button } from "../ui/Button";
 
-export default function CreateCardForm() {
+export default function UpdateCardForm({ number }: { number: string }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
+      number: number,
       name: "",
     },
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    createCard(JSON.parse(JSON.stringify(data.name)));
+    let obj = {
+      number: data.number.toString(),
+      name: data.name.toString(),
+    };
+    updateCard(obj.number, obj.name);
+    reset();
   });
+
   return (
     <form onSubmit={onSubmit} className="w-1/4">
       <label htmlFor="name" className="text-slate-500 mb-2 block text-sm">

@@ -1,4 +1,6 @@
-// #region Type aliases (3)
+import Movements from "@/components/Movements";
+
+// #region Type aliases (5)
 
 export type Card = {
   id: string;
@@ -10,6 +12,21 @@ export type Card = {
 export type Cards = {
   cards: Card[];
 };
+export type Movement = {
+  type: string;
+  draw: string;
+  deposit: string;
+  created_at: string | number | Date;
+  id: string;
+  amount: number;
+  number_sender: string;
+  number_receiver: string;
+  user_id_sender: string;
+  user_id_receiver: string;
+};
+export type Movements = {
+  movements: Movement[];
+};
 export type User = {
   id: string;
   name: string;
@@ -17,4 +34,4 @@ export type User = {
   password: string;
 };
 
-// #endregion Type aliases (3)
+// #endregion Type aliases (5)

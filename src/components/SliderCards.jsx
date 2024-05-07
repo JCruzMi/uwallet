@@ -61,12 +61,14 @@ export default function SliderCards() {
                   key={item.id + index}
                   name={item.name}
                   amount={item.amount}
-                  number={item.number}
+                  number={item.id}
                 />
               ))
             ) : (
               <div className="animate-pulse bg-secondary max-w-[230px] min-w-[230px] h-full w-full max-h-[140px] min-h-[140px] rounded-lg">
-                Not cards allowed
+                <span className="flex items-center justify-center h-full  min-h-[140px]">
+                  Not cards allowed
+                </span>
               </div>
             )}
           </Slider>
