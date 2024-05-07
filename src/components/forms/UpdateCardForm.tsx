@@ -3,31 +3,32 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-import { Button } from "../ui/Button";
 import { deleteCard, updateCard } from "@/lib/cards";
+
+import { Button } from "../ui/Button";
 
 export default function UpdateCardForm({ number }: { number: string }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm({
     defaultValues: {
       number: number,
-      name: ""
+      name: "",
     },
   });
 
   const onSubmit = handleSubmit(async (data) => {
     let obj = {
       number: data.number.toString(),
-      name: data.name.toString()
+      name: data.name.toString(),
     };
-    updateCard(obj.number.toString(), obj.name.toString()); 
+    updateCard(obj.number, obj.name);
     reset();
   });
-  
+
   return (
     <form onSubmit={onSubmit} className="w-1/4">
       <label htmlFor="name" className="text-slate-500 mb-2 block text-sm">
