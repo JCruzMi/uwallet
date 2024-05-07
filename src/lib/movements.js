@@ -16,15 +16,13 @@ export async function createMovement(number_sender, number_receiver, amount) {
   try {
     // Retrieve the IDs of the sender and receiver from the database
     const user_id_sender = await sql`
-      SELECT u.id
-      FROM users u
-      INNER JOIN cards c ON u.id = c.user_id
+      SELECT c.user_id id
+      FROM cards c
       WHERE c.id = ${number_sender}`;
 
     const user_id_receiver = await sql`
-      SELECT u.id
-      FROM users u
-      INNER JOIN cards c ON u.id = c.user_id
+      SELECT  c.user_id id
+      FROM cards c
       WHERE c.id = ${number_receiver}`;
 
     // Insert the new movement into the database
@@ -69,7 +67,12 @@ export async function getMovements() {
     try {
       // Query the database for the user's movements
       const data = await sql`
-        SELECT * 
+        SELECT * , 
+        case when user_id_sender = 2 then 'true' else 'false' end as deposit,
+        case when user_id_receiver = 2 then 'true' else 'false' end as draw,
+        case when user_id_sender <> 2 and user_id_receiver <> 2 then 'transfer' 
+        when user_id_sender = ${session?.user.id} then 'draw' 
+        WHEN user_id_receiver = ${session?.user.id}  then 'deposit' end as type
         FROM movements
         WHERE user_id_sender = ${session?.user.id}
         OR user_id_receiver = ${session?.user.id}`;

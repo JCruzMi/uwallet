@@ -13,6 +13,9 @@ export type Cards = {
   cards: Card[];
 };
 export type Movement = {
+  type: string;
+  draw: string;
+  deposit: string;
   created_at: string | number | Date;
   id: string;
   amount: number;
@@ -24,7 +27,6 @@ export type Movement = {
 export type Movements = {
   movements: Movement[];
 };
-
 export type User = {
   id: string;
   name: string;
