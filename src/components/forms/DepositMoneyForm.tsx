@@ -3,15 +3,22 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-import { Button } from "../ui/Button";
 import { depositMoney } from "@/lib/cards";
 
-export default function DepositMoneyForm({ number, amount}: { number: string, amount: number}) {
+import { Button } from "../ui/Button";
+
+export default function DepositMoneyForm({
+  number,
+  amount,
+}: {
+  number: string;
+  amount: number;
+}) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm({
     defaultValues: {
       number: number,
@@ -22,9 +29,9 @@ export default function DepositMoneyForm({ number, amount}: { number: string, am
   const onSubmit = handleSubmit(async (data) => {
     let obj = {
       number: data.number.toString(),
-      amount: data.amount.toString()
+      amount: parseInt(data.amount),
     };
-    depositMoney(obj.number.toString(), obj.amount.toString()); 
+    depositMoney(obj.number, obj.amount);
     reset();
   });
 
@@ -34,7 +41,9 @@ export default function DepositMoneyForm({ number, amount}: { number: string, am
         Amount
       </label>
       <div className="relative">
-        <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">$</span>
+        <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
+          $
+        </span>
         <input
           type="text"
           {...register("amount", {
@@ -45,8 +54,8 @@ export default function DepositMoneyForm({ number, amount}: { number: string, am
                   return "Amount must be greater than zero";
                 }
                 return true;
-              }
-            }
+              },
+            },
           })}
           className="p-3 pl-10 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
           placeholder="0"

@@ -1,6 +1,7 @@
 import { SessionProvider } from 'next-auth/react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
+import Plans from '@/components/Plans';
 import { ClockIcon, ShieldCheckIcon, SparklesIcon } from '@heroicons/react/24/outline';
 
 // #region Functions (1)
@@ -27,7 +28,7 @@ export default function Home() {
                   </Link>
                 </div>
                 <div className="flex items-end justify-end">
-                  <div className="w-5/6 h-[calc(100%-40px)] bg-white"></div>
+                  <div className="w-5/6 h-[calc(100%-40px)] bg-background/30"></div>
                 </div>
               </div>
             </div>
@@ -41,7 +42,7 @@ export default function Home() {
                       <ShieldCheckIcon className="h-8 w-8" />
                     </div>
 
-                    <div>
+                    <div className='flex flex-col gap-3'>
                       <h1 className="font-bold text-2xl">100% Secure</h1>
                       <p>
                         With strong security protocols, manage cards and money
@@ -54,7 +55,7 @@ export default function Home() {
                       <ClockIcon className="h-8 w-8 text-gray-black" />
                     </div>
 
-                    <div>
+                    <div className='flex flex-col gap-3'>
                       <h1 className="font-bold text-2xl">Save time</h1>
                       <p>
                         With intuitive functions they simplify financial
@@ -68,7 +69,7 @@ export default function Home() {
                       <SparklesIcon className="h-8 w-8 text-gray-black" />
                     </div>
 
-                    <div>
+                    <div className='flex flex-col gap-3'>
                       <h1 className="font-bold text-2xl">Minimalist</h1>
                       <p>
                         With a clean design, essential functionalities. Manage
@@ -83,11 +84,7 @@ export default function Home() {
             <div className="w-full h-screen px-4" id="pricing">
               <div className="w-full h-full flex flex-col items-center justify-center gap-10">
                 <h1 className="text-4xl font-bold">Pricing</h1>
-                <div className="flex gap-4 w-full h-3/4 items-center">
-                  <div className="bg-white rounded-xl w-1/3 h-5/6"></div>
-                  <div className="bg-white rounded-xl w-1/3 h-full"></div>
-                  <div className="bg-white rounded-xl w-1/3 h-5/6"></div>
-                </div>
+                <Plans />
               </div>
             </div>
           </div>
