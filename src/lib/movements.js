@@ -27,8 +27,8 @@ export async function createMovement(number_sender, number_receiver, amount) {
 
     // Insert the new movement into the database
     await sql`
-      insert into movements (number_sender, number_receiver, amount, user_id_sender, user_id_receiver)
-      values (${number_sender}, ${number_receiver}, ${amount}, ${parseInt(user_id_sender.rows[0].id)}, ${parseInt(user_id_receiver.rows[0].id)})`;
+      INSERT INTO movements (number_sender, number_receiver, amount, user_id_sender, user_id_receiver)
+      VALUES (${number_sender}, ${number_receiver}, ${amount}, ${parseInt(user_id_sender.rows[0].id)}, ${parseInt(user_id_receiver.rows[0].id)})`;
   } catch (error) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
@@ -45,7 +45,7 @@ export async function createMovement(number_sender, number_receiver, amount) {
 export async function deleteMovement(id) {
   try {
     // Delete the movement from the database.
-    await sql`delete from movements where id = ${id}`;
+    await sql`DELETE FROM movements WHERE id = ${id}`;
   } catch (error) {
     // If there is an error, return a JSON response with the error.
     return NextResponse.json(error);
@@ -68,14 +68,16 @@ export async function getMovements() {
       // Query the database for the user's movements
       const data = await sql`
         SELECT * , 
-        case when user_id_sender = 2 then 'true' else 'false' end as deposit,
-        case when user_id_receiver = 2 then 'true' else 'false' end as draw,
-        case when user_id_sender <> 2 and user_id_receiver <> 2 then 'transfer' 
-        when user_id_sender = ${session?.user.id} then 'draw' 
-        WHEN user_id_receiver = ${session?.user.id}  then 'deposit' end as type
+        CASE WHEN user_id_sender = 2 THEN 'true' ELSE 'false' END AS deposit,
+        CASE WHEN user_id_receiver = 2 THEN 'true' ELSE 'false' END AS draw,
+        CASE WHEN user_id_sender <> 2 AND user_id_receiver <> 2 THEN 'transfer' 
+        WHEN user_id_sender = ${session?.user.id} THEN 'draw' 
+        WHEN user_id_receiver = ${session?.user.id} THEN 'deposit' END AS type
         FROM movements
         WHERE user_id_sender = ${session?.user.id}
-        OR user_id_receiver = ${session?.user.id}`;
+        OR user_id_receiver = ${session?.user.id}
+        ORDER BY created_at DESC
+        LIMIT 5`;
 
       // Return the movements as an array of rows
       return data.rows;
