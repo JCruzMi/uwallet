@@ -1,17 +1,17 @@
 "use client";
+import moment from "moment";
 import { useEffect, useState } from "react";
 
 import { Movement } from "@/lib/definitions";
 import { getMovements } from "@/lib/movements";
 import Format from "@/utils/format";
 import {
+  ArrowTrendingDownIcon,
+  ArrowTrendingUpIcon,
   BanknotesIcon,
   CurrencyDollarIcon,
   PaperAirplaneIcon,
-  ArrowTrendingUpIcon,
-  ArrowTrendingDownIcon
 } from "@heroicons/react/24/outline";
-import moment from "moment";
 
 export default function Movements() {
   const [movements, setMovements] = useState<Movement[]>([]);
@@ -56,7 +56,13 @@ export default function Movements() {
 
   if (loading) {
     return (
-      <p className="animate-pulse w-[200px] h-8 rounded-md bg-secondary"></p>
+      <div className="flex flex-col gap-4 w-full">
+        <p className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></p>
+        <p className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></p>
+        <p className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></p>
+        <p className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></p>
+        <p className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></p>
+      </div>
     );
   }
   return (
@@ -64,7 +70,7 @@ export default function Movements() {
       {movements.map((item) => (
         <div
           key={item.id}
-          className="flex justify-between gap-2 bg-zinc-800 p-4 rounded-lg w-full"
+          className="flex justify-between gap-2 bg-zinc-800/60 p-4 rounded-lg w-full"
         >
           <div>
             <p className="text-2xl font-semibold">{iconType(item.type)}</p>
@@ -86,10 +92,9 @@ export default function Movements() {
             )}
 
             <p className="text-sm font-light text-white/50">
-              {moment(item.created_at).subtract(5, 'hours').fromNow()}
+              {moment(item.created_at).subtract(5, "hours").fromNow()}
             </p>
           </div>
-          
         </div>
       ))}
     </div>

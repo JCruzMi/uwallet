@@ -25,7 +25,7 @@ export default function DeleteCard({ number }: { number: string }) {
         Delete
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader className="w-1/4 px-1 flex justify-start flex-col items-start mx-auto">
+        <DrawerHeader className="max-w-sm px-1 flex justify-start flex-col items-start mx-auto">
           <DrawerTitle>Delete Card</DrawerTitle>
           <DrawerDescription>Remove a card.</DrawerDescription>
         </DrawerHeader>

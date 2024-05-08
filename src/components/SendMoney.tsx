@@ -25,7 +25,7 @@ export default function SendMoney({ numberSender, amountCard }: { numberSender: 
         Send
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader className="w-1/4 px-1 flex justify-start flex-col items-start mx-auto">
+        <DrawerHeader className="max-w-sm px-1 flex justify-start flex-col items-start mx-auto">
           <DrawerTitle>Send Money</DrawerTitle>
           <DrawerDescription>Transfer money to another card.</DrawerDescription>
         </DrawerHeader>

@@ -22,7 +22,7 @@ export default function CreateCardForm() {
     createCard(JSON.parse(JSON.stringify(data.name)));
   });
   return (
-    <form onSubmit={onSubmit} className="w-1/4">
+    <form onSubmit={onSubmit} className="max-w-sm">
       <label htmlFor="name" className="text-slate-500 mb-2 block text-sm">
         Name Card
       </label>

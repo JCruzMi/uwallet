@@ -12,8 +12,8 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { CreditCardIcon } from "@heroicons/react/24/outline";
-import UpdateCardForm from "./forms/UpdateCardForm";
 
+import UpdateCardForm from "./forms/UpdateCardForm";
 
 export default function UpdateCard({ number }: { number: string }) {
   return (
@@ -25,7 +25,7 @@ export default function UpdateCard({ number }: { number: string }) {
         Update
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader className="w-1/4 px-1 flex justify-start flex-col items-start mx-auto">
+        <DrawerHeader className="max-w-sm px-1 flex justify-start flex-col items-start mx-auto">
           <DrawerTitle>Update Card</DrawerTitle>
           <DrawerDescription>Modify the name of the card.</DrawerDescription>
         </DrawerHeader>
