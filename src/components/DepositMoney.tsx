@@ -15,7 +15,13 @@ import { CurrencyDollarIcon } from "@heroicons/react/24/outline";
 
 import DepositMoneyForm from "./forms/DepositMoneyForm";
 
-export default function DepositMoney({ number, amount}: { number: string, amount: number}) {
+export default function DepositMoney({
+  number,
+  amount,
+}: {
+  number: string;
+  amount: number;
+}) {
   return (
     <Drawer>
       <DrawerTrigger className="flex gap-2 items-center px-1 py-2 transition-colors hover:bg-zinc-900 rounded-md text-sm w-full">
@@ -25,12 +31,12 @@ export default function DepositMoney({ number, amount}: { number: string, amount
         Deposit
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader className="w-1/4 px-1 flex justify-start flex-col items-start mx-auto">
+        <DrawerHeader className="max-w-sm px-1 flex justify-start flex-col items-start mx-auto">
           <DrawerTitle>Deposit Money</DrawerTitle>
           <DrawerDescription>Put money on your card.</DrawerDescription>
         </DrawerHeader>
         <DrawerFooter className="flex items-center justify-center">
-          <DepositMoneyForm number={number} amount={amount}/>
+          <DepositMoneyForm number={number} amount={amount} />
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
