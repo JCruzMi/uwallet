@@ -22,7 +22,7 @@ export default async function Navbar() {
           await signOut();
         }}
       >
-        <Button className="w-10 !p-0 flex justify-center items-center rounded-lg">
+        <Button className="!w-8 !p-0 flex justify-center items-center">
           <ArrowLeftStartOnRectangleIcon className="h-5 w-5" />
         </Button>
       </form>

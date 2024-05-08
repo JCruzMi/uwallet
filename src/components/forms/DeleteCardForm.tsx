@@ -64,7 +64,7 @@ export default function DeleteCardForm({ number }: { number: string }) {
         <span className="text-red-500 text-xs">{errors.number.message}</span>
       )}
 
-      <Button className="w-full rounded-lg">Submit</Button>
+      <Button>Submit</Button>
     </form>
   );
 }

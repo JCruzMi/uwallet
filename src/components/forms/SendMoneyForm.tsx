@@ -105,7 +105,7 @@ export default function SendMoneyForm({
         <span className="text-red-500 text-xs">{errors.amount.message}</span>
       )}
 
-      <Button className="w-full rounded-lg">Submit</Button>
+      <Button>Submit</Button>
     </form>
   );
 }

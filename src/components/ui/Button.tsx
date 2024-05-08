@@ -21,7 +21,7 @@ export function Button({ children, className, ...rest }: ButtonProps) {
       <button
         {...rest}
         className={clsx(
-          'text-sm flex items-center justify-center h-8 w-8 rounded-full bg-white bg-opacity-10 transition-colors hover:bg-opacity-15',
+          'w-full h-8 text-sm flex items-center justify-center rounded-lg bg-white bg-opacity-10 transition-colors hover:bg-opacity-15',
           className,
         )}
       >
