@@ -36,7 +36,7 @@ export default function DepositMoneyForm({
   });
 
   return (
-    <form onSubmit={onSubmit} className="w-1/4">
+    <form onSubmit={onSubmit} className="max-w-sm">
       <label htmlFor="amount" className="text-slate-500 mb-2 block text-sm">
         Amount
       </label>

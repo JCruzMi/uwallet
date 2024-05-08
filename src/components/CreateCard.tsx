@@ -22,7 +22,7 @@ export default function CreateCard() {
         <PlusIcon className="h-6 w-6" />
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader className="w-1/4 px-1 flex justify-start flex-col items-start mx-auto">
+        <DrawerHeader className="max-w-sm px-1 flex justify-start flex-col items-start mx-auto">
           <DrawerTitle>Create Card</DrawerTitle>
           <DrawerDescription>none description</DrawerDescription>
         </DrawerHeader>

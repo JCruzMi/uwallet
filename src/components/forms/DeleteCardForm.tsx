@@ -3,15 +3,16 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-import { Button } from "../ui/Button";
 import { deleteCard } from "@/lib/cards";
+
+import { Button } from "../ui/Button";
 
 export default function DeleteCardForm({ number }: { number: string }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm({
     defaultValues: {
       number: "",
@@ -22,12 +23,12 @@ export default function DeleteCardForm({ number }: { number: string }) {
     let obj = {
       number: data.number.toString(),
     };
-    deleteCard(obj.number.toString()); 
+    deleteCard(obj.number.toString());
     reset();
   });
-  
+
   return (
-    <form onSubmit={onSubmit} className="w-1/4">
+    <form onSubmit={onSubmit} className="max-w-sm">
       <label
         htmlFor="Number card"
         className="text-slate-500 mb-2 block text-sm"
@@ -47,8 +48,8 @@ export default function DeleteCardForm({ number }: { number: string }) {
                 return "Card number does not match";
               }
               return true;
-            }
-          }
+            },
+          },
         })}
         className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
         placeholder="1000 1000 1000 1000"

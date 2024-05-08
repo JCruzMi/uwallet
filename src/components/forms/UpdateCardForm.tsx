@@ -30,7 +30,7 @@ export default function UpdateCardForm({ number }: { number: string }) {
   });
 
   return (
-    <form onSubmit={onSubmit} className="w-1/4">
+    <form onSubmit={onSubmit} className="max-w-sm">
       <label htmlFor="name" className="text-slate-500 mb-2 block text-sm">
         Name Card
       </label>

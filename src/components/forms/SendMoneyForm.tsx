@@ -37,7 +37,7 @@ export default function SendMoneyForm({
   });
 
   return (
-    <form onSubmit={onSubmit} className="w-1/4">
+    <form onSubmit={onSubmit} className="max-w-sm">
       <label
         htmlFor="Number card"
         className="text-slate-500 mb-2 block text-sm"

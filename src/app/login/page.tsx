@@ -33,7 +33,7 @@ export default function Login() {
       <main className="flex flex-col items-center justify-between md:p-24 p-4 w-full">
         <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
           <div className="h-full flex justify-center items-center w-full">
-            <form onSubmit={onSubmit} className="sm:w-1/4">
+            <form onSubmit={onSubmit} className="sm:max-w-sm">
               <h1 className="text-slate-200 font-bold text-4xl mb-4">Login</h1>
 
               <label
