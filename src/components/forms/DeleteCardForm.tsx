@@ -15,7 +15,7 @@ export default function DeleteCardForm({ number }: { number: string }) {
     reset,
   } = useForm({
     defaultValues: {
-      number: "",
+      number: number,
     },
   });
 
