@@ -70,7 +70,7 @@ export default function Movements() {
       {movements.map((item) => (
         <div
           key={item.id}
-          className="flex justify-between gap-2 bg-zinc-800/60 p-4 rounded-lg w-full"
+          className="flex justify-between gap-2 bg-background border border-input p-4 rounded-lg w-full"
         >
           <div>
             <div className="text-2xl font-semibold">{iconType(item.type)}</div>

@@ -18,7 +18,7 @@ import CreateCardForm from "./forms/CreateCardForm";
 export default function CreateCard() {
   return (
     <Drawer>
-      <DrawerTrigger className="min-h-[140px] bg-purple-500 px-4 text-sm font-medium text-white transition-colors hover:bg-purple-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500 active:bg-purple-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50 flex items-center justify-center w-[62px] rounded-lg h-full ">
+      <DrawerTrigger className="min-h-[140px] w- border border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 w-[62px]">
         <PlusIcon className="h-6 w-6" />
       </DrawerTrigger>
       <DrawerContent>

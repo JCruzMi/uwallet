@@ -8,7 +8,7 @@ export default function Navbar() {
       <div className="flex items-center gap-4 md:gap-20">
         <Link href="/">
           <div className="bg-gradient-to-r from-pink-300 to-purple-500 text-transparent bg-clip-text">
-            <h1 className="font-bold text-lg">HKmoney</h1>
+            <h1 className="font-bold text-lg">UWallet</h1>
           </div>
         </Link>
         <div className="flex gap-10">
