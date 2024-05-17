@@ -117,7 +117,7 @@ export default function Login() {
               </span>
             )}
 
-            <Button className="mt-4 w-full">Continue</Button>
+            <Button>Continue</Button>
           </form>
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
@@ -130,9 +130,7 @@ export default function Login() {
             </div>
           </div>
           <Link href="/register">
-            <Button className="mt-4 w-full" variant={"outline"}>
-              Register
-            </Button>
+            <Button variant={"outline"}>Register</Button>
           </Link>
 
           <p className="px-8 text-center text-sm text-muted-foreground">
