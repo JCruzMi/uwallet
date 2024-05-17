@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 import Navbar from "@/components/Navbar";
+import { Input } from "@/components/ui/input";
 
 export default function Register() {
   const {
@@ -69,7 +70,7 @@ export default function Register() {
               >
                 Username:
               </label>
-              <input
+              <Input
                 type="text"
                 {...register("username", {
                   required: {
@@ -77,7 +78,7 @@ export default function Register() {
                     message: "Username is required",
                   },
                 })}
-                className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
+                className="w-full"
                 placeholder="yourUser123"
               />
 
@@ -93,7 +94,7 @@ export default function Register() {
               >
                 Email:
               </label>
-              <input
+              <Input
                 type="email"
                 {...register("email", {
                   required: {
@@ -101,7 +102,7 @@ export default function Register() {
                     message: "Email is required",
                   },
                 })}
-                className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
+                className="w-full"
                 placeholder="user@email.com"
               />
               {errors.email && (
@@ -116,7 +117,7 @@ export default function Register() {
               >
                 Password:
               </label>
-              <input
+              <Input
                 type="password"
                 {...register("password", {
                   required: {
@@ -124,7 +125,7 @@ export default function Register() {
                     message: "Password is required",
                   },
                 })}
-                className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
+                className="w-full"
                 placeholder="********"
               />
               {errors.password && (
@@ -139,7 +140,7 @@ export default function Register() {
               >
                 Confirm Password:
               </label>
-              <input
+              <Input
                 type="password"
                 {...register("confirmPassword", {
                   required: {
@@ -147,7 +148,7 @@ export default function Register() {
                     message: "Confirm Password is required",
                   },
                 })}
-                className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
+                className="w-full"
                 placeholder="********"
               />
               {errors.confirmPassword && (
