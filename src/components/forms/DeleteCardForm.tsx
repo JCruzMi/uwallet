@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import { deleteCard } from "@/lib/cards";
 
 import { Button } from "../ui/Button";
-import { useToast } from "../ui/use-toast";
 import { Input } from "../ui/input";
+import { useToast } from "../ui/use-toast";
 
 export default function DeleteCardForm({ number }: { number: string }) {
   const {
@@ -29,7 +29,7 @@ export default function DeleteCardForm({ number }: { number: string }) {
         throw new Error("Card number does not match");
       }
 
-      await deleteCard(data.number.toString());
+      await deleteCard(JSON.parse(JSON.stringify(data.number)));
       reset();
       toast({
         title: "Deleted Card",
