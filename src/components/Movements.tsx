@@ -34,21 +34,21 @@ export default function Movements() {
         return (
           <div className="flex items-center gap-2">
             <BanknotesIcon className="h-5 w-5" />
-            <p className="text-sm">Withdraw</p>
+            <div className="text-sm">Withdraw</div>
           </div>
         );
       case "deposit":
         return (
           <div className="flex items-center gap-2">
             <CurrencyDollarIcon className="h-5 w-5" />
-            <p className="text-sm">Deposit</p>
+            <div className="text-sm">Deposit</div>
           </div>
         );
       case "transfer":
         return (
           <div className="flex items-center gap-2">
             <PaperAirplaneIcon className="h-5 w-5" />
-            <p className="text-sm">Transfer</p>
+            <div className="text-sm">Transfer</div>
           </div>
         );
     }
@@ -57,11 +57,11 @@ export default function Movements() {
   if (loading) {
     return (
       <div className="flex flex-col gap-4 w-full">
-        <p className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></p>
-        <p className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></p>
-        <p className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></p>
-        <p className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></p>
-        <p className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></p>
+        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></div>
+        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></div>
+        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></div>
+        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></div>
+        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></div>
       </div>
     );
   }
@@ -73,27 +73,27 @@ export default function Movements() {
           className="flex justify-between gap-2 bg-zinc-800/60 p-4 rounded-lg w-full"
         >
           <div>
-            <p className="text-2xl font-semibold">{iconType(item.type)}</p>
-            <p className="text-2xl font-semibold">{Format(item.amount)}</p>
+            <div className="text-2xl font-semibold">{iconType(item.type)}</div>
+            <div className="text-2xl font-semibold">{Format(item.amount)}</div>
           </div>
 
           <div className="flex flex-col items-end">
             {item.deposit !== "true" && (
               <div className="flex items-center gap-2 text-red-500">
                 <ArrowTrendingDownIcon className="h-4 w-4" />
-                <p className="text-sm font-light">{item.number_sender}</p>
+                <div className="text-sm font-light">{item.number_sender}</div>
               </div>
             )}
             {item.draw !== "true" && (
               <div className="flex items-center gap-2 text-green-500">
                 <ArrowTrendingUpIcon className="h-4 w-4" />
-                <p className="text-sm font-light">{item.number_receiver}</p>
+                <div className="text-sm font-light">{item.number_receiver}</div>
               </div>
             )}
 
-            <p className="text-sm font-light text-white/50">
+            <div className="text-sm font-light text-white/50">
               {moment(item.created_at).subtract(5, "hours").fromNow()}
-            </p>
+            </div>
           </div>
         </div>
       ))}

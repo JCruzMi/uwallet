@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { sendMoney } from "@/lib/cards";
 
 import { Button } from "../ui/Button";
+import { useToast } from "../ui/use-toast";
 
 export default function SendMoneyForm({
   numberSender,
@@ -27,13 +28,40 @@ export default function SendMoneyForm({
     },
   });
 
+  const { toast } = useToast();
+
   const onSubmit = handleSubmit(async (data) => {
-    sendMoney(
-      JSON.parse(JSON.stringify(data.numberSender)),
-      JSON.parse(JSON.stringify(data.number)),
-      JSON.parse(JSON.stringify(data.amount))
-    );
-    reset();
+    try {
+      if (
+        parseInt(data.amount) <= 0 ||
+        parseInt(data.amount) > amountCard ||
+        data.number === numberSender
+      ) {
+        if (parseInt(data.amount) <= 0) {
+          throw new Error("Amount must be greater than zero.");
+        } else if (data.number === numberSender) {
+          throw new Error("Cannot send money to the same card.");
+        } else if (parseInt(data.amount) > amountCard) {
+          throw new Error("You don't have enough money in this card.");
+        }
+      }
+
+      await sendMoney(
+        JSON.parse(JSON.stringify(data.numberSender)),
+        JSON.parse(JSON.stringify(data.number)),
+        JSON.parse(JSON.stringify(data.amount))
+      );
+      reset();
+      toast({
+        title: "Money Sent",
+        description: "The money has been sent successfully.",
+      });
+    } catch (error: string | any) {
+      toast({
+        title: "Error",
+        description: error.message,
+      });
+    }
   });
 
   return (
@@ -50,13 +78,6 @@ export default function SendMoneyForm({
           required: {
             value: true,
             message: "Number card is required",
-          },
-          validate: {
-            notSame: (value) => {
-              if (value == numberSender) {
-                return "Cannot send money to the same card";
-              }
-            },
           },
         })}
         className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
@@ -84,17 +105,6 @@ export default function SendMoneyForm({
           type="text"
           {...register("amount", {
             required: "Amount is required",
-            validate: {
-              validAmount: (value) => {
-                if (parseInt(value) <= 0) {
-                  return "Amount must be greater than zero";
-                }
-                if (parseInt(value) > amountCard) {
-                  return "You don't have enough money in this card";
-                }
-                return true;
-              },
-            },
           })}
           className="p-3 pl-10 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
           placeholder="0"
