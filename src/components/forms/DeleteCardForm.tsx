@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { deleteCard } from "@/lib/cards";
 
 import { Button } from "../ui/Button";
+import { useToast } from "../ui/use-toast";
+import { Input } from "../ui/input";
 
 export default function DeleteCardForm({ number }: { number: string }) {
   const {
@@ -15,16 +17,30 @@ export default function DeleteCardForm({ number }: { number: string }) {
     reset,
   } = useForm({
     defaultValues: {
-      number: number,
+      number: "",
     },
   });
 
+  const { toast } = useToast();
+
   const onSubmit = handleSubmit(async (data) => {
-    let obj = {
-      number: data.number.toString(),
-    };
-    deleteCard(obj.number.toString());
-    reset();
+    try {
+      if (data.number !== number) {
+        throw new Error("Card number does not match");
+      }
+
+      await deleteCard(data.number.toString());
+      reset();
+      toast({
+        title: "Deleted Card",
+        description: "The card has been deleted succesfully",
+      });
+    } catch (error: string | any) {
+      toast({
+        title: "Error",
+        description: error.message,
+      });
+    }
   });
 
   return (
@@ -35,7 +51,7 @@ export default function DeleteCardForm({ number }: { number: string }) {
       >
         Number card
       </label>
-      <input
+      <Input
         type="text"
         {...register("number", {
           required: {
@@ -51,7 +67,7 @@ export default function DeleteCardForm({ number }: { number: string }) {
             },
           },
         })}
-        className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
+        className="w-full"
         placeholder="1000 1000 1000 1000"
         onChange={(e) => {
           let value = e.target.value.replace(/\D/g, "");

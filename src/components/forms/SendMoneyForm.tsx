@@ -7,6 +7,7 @@ import { sendMoney } from "@/lib/cards";
 
 import { Button } from "../ui/Button";
 import { useToast } from "../ui/use-toast";
+import { Input } from "../ui/input";
 
 export default function SendMoneyForm({
   numberSender,
@@ -32,18 +33,12 @@ export default function SendMoneyForm({
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      if (
-        parseInt(data.amount) <= 0 ||
-        parseInt(data.amount) > amountCard ||
-        data.number === numberSender
-      ) {
-        if (parseInt(data.amount) <= 0) {
-          throw new Error("Amount must be greater than zero.");
-        } else if (data.number === numberSender) {
-          throw new Error("Cannot send money to the same card.");
-        } else if (parseInt(data.amount) > amountCard) {
-          throw new Error("You don't have enough money in this card.");
-        }
+      if (parseInt(data.amount) <= 0) {
+        throw new Error("Amount must be greater than zero");
+      } else if (data.number === numberSender) {
+        throw new Error("Cannot send money to the same card");
+      } else if (parseInt(data.amount) > amountCard) {
+        throw new Error("You don't have enough money in this card");
       }
 
       await sendMoney(
@@ -54,7 +49,7 @@ export default function SendMoneyForm({
       reset();
       toast({
         title: "Money Sent",
-        description: "The money has been sent successfully.",
+        description: "The money has been sent successfully",
       });
     } catch (error: string | any) {
       toast({
@@ -72,7 +67,7 @@ export default function SendMoneyForm({
       >
         Number card
       </label>
-      <input
+      <Input
         type="text"
         {...register("number", {
           required: {
@@ -80,7 +75,7 @@ export default function SendMoneyForm({
             message: "Number card is required",
           },
         })}
-        className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
+        className="w-full"
         placeholder="1000 1000 1000 1000"
         onChange={(e) => {
           let value = e.target.value.replace(/\D/g, "");
@@ -101,12 +96,12 @@ export default function SendMoneyForm({
         <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
           $
         </span>
-        <input
+        <Input
           type="text"
           {...register("amount", {
             required: "Amount is required",
           })}
-          className="p-3 pl-10 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
+          className="pl-10 w-full"
           placeholder="0"
         />
       </div>

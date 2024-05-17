@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { withdrawMoney } from "@/lib/cards";
 
 import { Button } from "../ui/Button";
+import { useToast } from "../ui/use-toast";
+import { Input } from "../ui/input";
 
 export default function WithdrawMoneyForm({
   number,
@@ -26,13 +28,28 @@ export default function WithdrawMoneyForm({
     },
   });
 
+  const { toast } = useToast();
+
   const onSubmit = handleSubmit(async (data) => {
-    let obj = {
-      number: data.number.toString(),
-      amount: parseInt(data.amount),
-    };
-    withdrawMoney(obj.number, obj.amount);
-    reset();
+    try {
+      if (parseInt(data.amount) <= 0) {
+        throw new Error("Amount must be greater than zero");
+      } else if (parseInt(data.amount) > amount) {
+        throw new Error("You don't have enough money in this card");
+      }
+
+      await withdrawMoney(data.number.toString(), parseInt(data.amount));
+      reset();
+      toast({
+        title: "Money Withdrawn",
+        description: "The money has been successfully withdrawn",
+      });
+    } catch (error: string | any) {
+      toast({
+        title: "Error",
+        description: error.message,
+      });
+    }
   });
 
   return (
@@ -44,23 +61,12 @@ export default function WithdrawMoneyForm({
         <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
           $
         </span>
-        <input
+        <Input
           type="text"
           {...register("amount", {
             required: "Amount is required",
-            validate: {
-              validAmount: (value) => {
-                if (parseInt(value) <= 0) {
-                  return "Amount must be greater than zero";
-                }
-                if (parseInt(value) > amount) {
-                  return "You don't have enough money in this card";
-                }
-                return true;
-              },
-            },
           })}
-          className="p-3 pl-10 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
+          className="pl-10 w-full"
           placeholder="0"
         />
       </div>
