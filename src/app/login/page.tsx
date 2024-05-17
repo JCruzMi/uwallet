@@ -129,8 +129,8 @@ export default function Login() {
               </span>
             </div>
           </div>
-          <Link href="/register">
-            <Button className="mt-4 w-full" variant={"outline"}>
+          <Link href="/register" className="mt-4">
+            <Button className="w-full" variant={"outline"}>
               Register
             </Button>
           </Link>
