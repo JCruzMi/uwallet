@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { deleteCard, updateCard } from "@/lib/cards";
 
 import { Button } from "../ui/Button";
+import { Input } from "../ui/input";
+import { useToast } from "../ui/use-toast";
 
 export default function UpdateCardForm({ number }: { number: string }) {
   const {
@@ -20,13 +22,22 @@ export default function UpdateCardForm({ number }: { number: string }) {
     },
   });
 
+  const { toast } = useToast();
+
   const onSubmit = handleSubmit(async (data) => {
-    let obj = {
-      number: data.number.toString(),
-      name: data.name.toString(),
-    };
-    updateCard(obj.number, obj.name);
-    reset();
+    try {
+      await updateCard(data.number.toString(), data.name.toString());
+      reset();
+      toast({
+        title: "Updated Card",
+        description: "The card has been updated successfully",
+      });
+    } catch (error: string | any) {
+      toast({
+        title: "Error",
+        description: error.message,
+      });
+    }
   });
 
   return (
@@ -34,7 +45,7 @@ export default function UpdateCardForm({ number }: { number: string }) {
       <label htmlFor="name" className="text-slate-500 mb-2 block text-sm">
         Name Card
       </label>
-      <input
+      <Input
         type="text"
         {...register("name", {
           required: {
@@ -42,7 +53,7 @@ export default function UpdateCardForm({ number }: { number: string }) {
             message: "Name is required",
           },
         })}
-        className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
+        className="w-full"
         placeholder="Name"
       />
 
