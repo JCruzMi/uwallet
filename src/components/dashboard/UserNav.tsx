@@ -1,14 +1,20 @@
 import {
-    DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel,
-    DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
-import { auth, signOut } from '../../../auth';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { Button } from '../ui/Button';
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { auth, signOut } from "../../../auth";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Button } from "../ui/Button";
 
 // #region Functions (1)
 
-export async function UserNav({children}: any) {
+export async function UserNav({ children }: any) {
   const session: any = await auth();
   if (session) {
     return (
@@ -37,19 +43,12 @@ export async function UserNav({children}: any) {
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuItem>
-              Profile              
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              Billing              
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              Settings              
-            </DropdownMenuItem>
-            <DropdownMenuItem>New Team</DropdownMenuItem>
+            <DropdownMenuItem>Profile</DropdownMenuItem>
+            <DropdownMenuItem>Billing</DropdownMenuItem>
+            <DropdownMenuItem>Settings</DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-            {children}         
+          {children}
         </DropdownMenuContent>
       </DropdownMenu>
     );
