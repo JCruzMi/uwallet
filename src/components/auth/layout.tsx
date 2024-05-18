@@ -32,9 +32,23 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
               The function of this website is to demonstrate the knowledge
               acquired through the official Next 14 documentation empirically.
             </p>
-            <footer className="text-sm">
-              <a href="https://github.com/JCruzMi">Juan </a> &{" "}
-              <a href="https://github.com/KiaraLuz">Kiara</a>
+            <footer className="text-sm space-y-2">
+              <a
+                href="https://github.com/JCruzMi/uwallet"
+                className="underline underline-offset-4"
+                target="_blank"
+              >
+                View Project Repository
+              </a>
+              <div>
+                <a href="https://github.com/JCruzMi" target="_blank">
+                  Juan{" "}
+                </a>{" "}
+                &{" "}
+                <a href="https://github.com/KiaraLuz" target="_blank">
+                  Kiara
+                </a>
+              </div>
             </footer>
           </blockquote>
         </div>
