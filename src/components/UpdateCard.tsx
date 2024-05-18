@@ -25,7 +25,7 @@ export default function UpdateCard({ number }: { number: string }) {
         Update
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader className="max-w-sm px-1 flex justify-start flex-col items-start mx-auto">
+        <DrawerHeader className="max-w-xs w-full px-1 flex justify-start flex-col items-start mx-auto">
           <DrawerTitle>Update Card</DrawerTitle>
           <DrawerDescription>Modify the name of the card.</DrawerDescription>
         </DrawerHeader>

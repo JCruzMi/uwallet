@@ -31,7 +31,7 @@ export default function DepositMoney({
         Deposit
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader className="max-w-sm px-1 flex justify-start flex-col items-start mx-auto">
+        <DrawerHeader className="max-w-xs w-full px-1 flex justify-start flex-col items-start mx-auto">
           <DrawerTitle>Deposit Money</DrawerTitle>
           <DrawerDescription>Put money on your card.</DrawerDescription>
         </DrawerHeader>

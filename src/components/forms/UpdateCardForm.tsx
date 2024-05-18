@@ -31,17 +31,19 @@ export default function UpdateCardForm({ number }: { number: string }) {
       toast({
         title: "Updated Card",
         description: "The card has been updated successfully",
+        variant: "success",
       });
     } catch (error: string | any) {
       toast({
         title: "Error",
         description: error.message,
+        variant: "error",
       });
     }
   });
 
   return (
-    <form onSubmit={onSubmit} className="max-w-sm">
+    <form onSubmit={onSubmit} className="max-w-xs w-full">
       <label htmlFor="name" className="text-slate-500 mb-2 block text-sm">
         Name Card
       </label>
@@ -61,7 +63,7 @@ export default function UpdateCardForm({ number }: { number: string }) {
         <span className="text-red-500 text-xs">{errors.name.message}</span>
       )}
 
-      <Button>Submit</Button>
+      <Button>Update</Button>
     </form>
   );
 }
