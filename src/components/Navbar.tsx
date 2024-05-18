@@ -7,7 +7,7 @@ export default function Navbar() {
   return (
     <nav className="w-full max-w-6xl m-auto">
       <div className="flex justify-between items-center mb-4 px-4">
-        <div className="flex items-center gap-4 md:gap-8">
+        <div className="flex items-center md:gap-8">
           <Link href="/">
             <Button variant="ghost" className="flex gap-2 text-primary px-2">
               <svg
@@ -24,7 +24,7 @@ export default function Navbar() {
               UWallet
             </Button>
           </Link>
-          <div className="flex gap-4">
+          <div className="flex">
             <Link href="/#services">
               <Button variant="ghost" className="flex gap-2 text-primary px-2">
                 Services

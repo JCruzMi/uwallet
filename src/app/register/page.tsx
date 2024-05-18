@@ -2,9 +2,11 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+
+import AuthLayout from "@/components/auth/layout";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/input";
-import AuthLayout from "@/components/auth/layout";
+import { toast } from "@/components/ui/use-toast";
 
 export default function Register() {
   const {
@@ -28,8 +30,13 @@ export default function Register() {
       username: string;
       email: string;
     }) => {
+      console.log(data);
       if (data.password !== data.confirmPassword) {
-        return alert("Passwords do not match");
+        return toast({
+          title: "Error",
+          description: "Passwords do not match",
+          variant: "error",
+        });
       }
 
       const res = await fetch("/api/auth/register", {
@@ -43,9 +50,13 @@ export default function Register() {
           "Content-Type": "application/json",
         },
       });
-
       if (res.ok) {
         router.push("/login");
+        toast({
+          title: "Register",
+          description: "The account has been created successfully",
+          variant: "success",
+        });
       }
     }
   );

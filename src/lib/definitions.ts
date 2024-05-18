@@ -8,6 +8,9 @@ export type Card = {
   name: string;
   number: string;
   user_id: string;
+  created_at: string | number | Date;
+  ismain: boolean;
+  status: boolean;
 };
 export type Cards = {
   cards: Card[];

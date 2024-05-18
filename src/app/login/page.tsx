@@ -1,10 +1,12 @@
 "use client";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+
+import AuthLayout from "@/components/auth/layout";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/input";
+import { toast } from "@/components/ui/use-toast";
 import { authenticate } from "@/lib/actions";
-import AuthLayout from "@/components/auth/layout";
 
 export default function Login() {
   const {
@@ -22,6 +24,12 @@ export default function Login() {
     authenticate({
       email: data.email,
       password: data.password,
+    }).then((res) => {
+      toast({
+        title: "Error",
+        description: res,
+        variant: "error",
+      });
     });
   });
 
