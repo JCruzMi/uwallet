@@ -73,8 +73,12 @@ export default function Movements() {
           className="flex justify-between gap-2 bg-background border border-input p-4 rounded-lg w-full"
         >
           <div>
-            <div className="text-2xl font-semibold">{iconType(item.type)}</div>
-            <div className="text-2xl font-semibold">{Format(item.amount)}</div>
+            <div className="md:text-xl text-sm font-semibold">
+              {iconType(item.type)}
+            </div>
+            <div className="md:text-xl text-sm font-semibold">
+              {Format(item.amount)}
+            </div>
           </div>
 
           <div className="flex flex-col items-end">

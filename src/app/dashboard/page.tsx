@@ -5,7 +5,6 @@ import Navbar from "@/components/dashboard/Navbar";
 import TopNavigation from "@/components/dashboard/TopNavigation";
 import Movements from "@/components/Movements";
 import SliderCards from "@/components/SliderCards";
-import { Toaster } from "@/components/ui/toaster";
 
 const Dashboard = async () => {
   return (
@@ -58,7 +57,6 @@ const Dashboard = async () => {
         </div>
         <Navbar />
       </main>
-      <Toaster />
     </>
   );
 };

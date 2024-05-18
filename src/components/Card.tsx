@@ -4,21 +4,21 @@ import copyText from "@/utils/copyText";
 import Format from "../utils/format";
 import { DropdownMenuDemo } from "./DropdownMenuDemo";
 
-export default function Card({ name, amount, number }: CardType) {
+export default function Card({ name, amount, number, ismain }: CardType) {
+  console.log(ismain);
   return (
     <div className="border border-input bg-background hover:bg-accent hover:text-accent-foreground max-w-[230px] min-w-[230px] w-full min-h-[140px] rounded-lg flex flex-col justify-between p-4 text-primary text-base">
       <div>
         <div className="flex items-center justify-between gap-4">
           <div className="line-clamp-1">{name}</div>
-          <DropdownMenuDemo number={number} amount={amount} />
+          <DropdownMenuDemo number={number} amount={amount} ismain={ismain} />
         </div>
         <div>{Format(amount)} </div>
       </div>
       <div
-        className="flex flex-row gap-2 cursor-pointer"
+        className="gap-2 cursor-pointer xs:text-[10px] text-sm inline-flex"
         onClick={() => copyText(number)}
       >
-        {number}{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -30,6 +30,7 @@ export default function Card({ name, amount, number }: CardType) {
             d="M9 18q-.825 0-1.412-.587T7 16V4q0-.825.588-1.412T9 2h9q.825 0 1.413.588T20 4v12q0 .825-.587 1.413T18 18zm0-2h9V4H9zm-4 6q-.825 0-1.412-.587T3 20V7q0-.425.288-.712T4 6t.713.288T5 7v13h10q.425 0 .713.288T16 21t-.288.713T15 22zm4-6V4z"
           />
         </svg>{" "}
+        {number}{" "}
       </div>
     </div>
   );

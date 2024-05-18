@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
+import { createCardWithId } from "@/lib/cards";
 
 // #region Functions (1)
 
@@ -15,14 +16,7 @@ export async function POST(request) {
     userFound = userFound.rows[0];
 
     if (userFound) {
-      return NextResponse.json(
-        {
-          message: "Email already exists",
-        },
-        {
-          status: 400,
-        }
-      );
+      throw new Error("Email already exists");
     }
 
     const hashedPassword = await bcrypt.hash(data.password, 10);
@@ -34,16 +28,15 @@ export async function POST(request) {
 
     const { password: _, ...user } = newUser.rows[0];
 
+    await createCardWithId("Main", newUser.rows[0].id);
+
     return NextResponse.json(user);
   } catch (error) {
-    return NextResponse.json(
-      {
-        message: error.message,
-      },
-      {
-        status: 500,
-      }
-    );
+    return toast({
+      title: "Error",
+      description: error.message,
+      variant: "error",
+    });
   }
 }
 
