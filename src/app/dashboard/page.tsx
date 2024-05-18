@@ -55,7 +55,7 @@ const Dashboard = async () => {
           </div>
           <Movements />
         </div>
-        <Navbar />
+        {/* <Navbar /> */}
       </main>
     </>
   );
