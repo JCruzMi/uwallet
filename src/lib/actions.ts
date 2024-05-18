@@ -1,12 +1,12 @@
 "use server";
 
-import { AuthError } from 'next-auth';
-import { SignInOptions } from 'next-auth/react';
+import { AuthError } from "next-auth";
+import { SignInOptions } from "next-auth/react";
 
-import { sql } from '@vercel/postgres';
+import { sql } from "@vercel/postgres";
 
-import { auth, signIn } from '../../auth';
-import { Card, User } from './definitions';
+import { auth, signIn } from "../../auth";
+import { Card, User } from "./definitions";
 
 export async function authenticate(formData: SignInOptions) {
   try {
@@ -24,18 +24,17 @@ export async function authenticate(formData: SignInOptions) {
   }
 }
 
-export async function getCards( 
-): Promise<Card[] | undefined | void> {
+export async function getCards(): Promise<Card[] | undefined | void> {
   const session = await auth();
-  if(session?.user){
+  if (session?.user) {
     try {
       const data = await sql`
       SELECT * 
       FROM cards
-      WHERE user_id = ${session?.user.id}`;
+      WHERE user_id = ${session?.user.id} AND status`;
       return data.rows as Card[];
     } catch (error) {
-      return []
+      return [];
     }
   }
 }
