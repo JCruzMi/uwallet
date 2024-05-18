@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import { deleteCard } from "@/lib/cards";
 
 import { Button } from "../ui/Button";
-import { useToast } from "../ui/use-toast";
 import { Input } from "../ui/input";
+import { useToast } from "../ui/use-toast";
 
 export default function DeleteCardForm({ number }: { number: string }) {
   const {
@@ -34,17 +34,19 @@ export default function DeleteCardForm({ number }: { number: string }) {
       toast({
         title: "Deleted Card",
         description: "The card has been deleted succesfully",
+        variant: "success",
       });
     } catch (error: string | any) {
       toast({
         title: "Error",
         description: error.message,
+        variant: "error",
       });
     }
   });
 
   return (
-    <form onSubmit={onSubmit} className="max-w-sm">
+    <form onSubmit={onSubmit} className="max-w-xs w-full">
       <label
         htmlFor="Number card"
         className="text-slate-500 mb-2 block text-sm"
@@ -81,7 +83,7 @@ export default function DeleteCardForm({ number }: { number: string }) {
         <span className="text-red-500 text-xs">{errors.number.message}</span>
       )}
 
-      <Button>Submit</Button>
+      <Button>Delete</Button>
     </form>
   );
 }

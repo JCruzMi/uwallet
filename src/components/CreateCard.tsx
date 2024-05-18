@@ -3,7 +3,6 @@ import React from "react";
 
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
   DrawerFooter,
@@ -22,13 +21,13 @@ export default function CreateCard() {
         <PlusIcon className="h-6 w-6" />
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader className="max-w-sm px-1 flex justify-start flex-col items-start mx-auto">
+        <DrawerHeader className="max-w-xs w-full px-1 flex justify-start flex-col items-start mx-auto">
           <DrawerTitle>Create Card</DrawerTitle>
           <DrawerDescription>
             Create a new card by entering the card name
           </DrawerDescription>
         </DrawerHeader>
-        <DrawerFooter className="flex items-center justify-center">
+        <DrawerFooter className="flex items-center justify-center w-full">
           <CreateCardForm />
         </DrawerFooter>
       </DrawerContent>
