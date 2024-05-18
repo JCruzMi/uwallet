@@ -51,7 +51,7 @@ export default function SliderCards() {
                 return (
                   <div
                     key={index}
-                    className="animate-pulse bg-secondary max-w-[230px] min-w-[230px] h-full w-full max-h-[140px] min-h-[140px] rounded-lg"
+                    className="animate-pulse bg-secondary/60 max-w-[230px] min-w-[230px] h-full w-full max-h-[140px] min-h-[140px] rounded-lg"
                   ></div>
                 );
               })
@@ -65,7 +65,7 @@ export default function SliderCards() {
                 />
               ))
             ) : (
-              <div className="animate-pulse bg-secondary max-w-[230px] min-w-[230px] h-full w-full max-h-[140px] min-h-[140px] rounded-lg">
+              <div className="animate-pulse bg-secondary/60 max-w-[230px] min-w-[230px] h-full w-full max-h-[140px] min-h-[140px] rounded-lg">
                 <span className="flex items-center justify-center h-full  min-h-[140px]">
                   Not cards allowed
                 </span>
