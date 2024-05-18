@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import { ArrowLeftStartOnRectangleIcon } from '@heroicons/react/24/outline';
-import { signOut } from '../../../auth';
-import { Button } from '../ui/Button';
-import { UserNav } from './UserNav';
+import Link from "next/link";
+import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/outline";
+import { signOut } from "../../../auth";
+import { Button } from "../ui/Button";
+import { UserNav } from "./UserNav";
 
 // #region Functions (1)
 
@@ -27,19 +27,18 @@ export default async function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
-          <UserNav >
-          <form
-            action={async () => {
-              "use server";
-              await signOut();
-            }}
-          >
-            <Button variant={"outline"} className="px-2 w-full" size={"sm"}>
-              Log out 
-            </Button>
-          </form>
+          <UserNav>
+            <form
+              action={async () => {
+                "use server";
+                await signOut();
+              }}
+            >
+              <Button variant={"outline"} className="m-0" size={"sm"}>
+                Log out
+              </Button>
+            </form>
           </UserNav>
-          
         </div>
       </nav>
     </div>

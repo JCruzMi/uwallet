@@ -26,7 +26,7 @@ export default function SliderCards() {
     );
   }
   return (
-    <p className="text-3xl font-semibold">
+    <p className="text-2xl font-semibold">
       {Format(cards.reduce((acc, item) => acc + item.amount, 0))}
     </p>
   );

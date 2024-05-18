@@ -31,8 +31,8 @@ export function DropdownMenuDemo({
         <SendMoney numberSender={number} amountCard={amount} />
         <DepositMoney number={number} amount={amount} />
         <WithdrawMoney number={number} amount={amount} />
-        <DeleteCard number={number} />
         <UpdateCard number={number} />
+        <DeleteCard number={number} />
       </DropdownMenuContent>
     </DropdownMenu>
   );
