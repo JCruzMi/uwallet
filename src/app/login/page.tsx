@@ -25,11 +25,13 @@ export default function Login() {
       email: data.email,
       password: data.password,
     }).then((res) => {
-      toast({
-        title: "Error",
-        description: res,
-        variant: "error",
-      });
+      if (res) {
+        toast({
+          title: "Error",
+          description: res,
+          variant: "error",
+        });
+      }
     });
   });
 
