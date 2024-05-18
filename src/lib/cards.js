@@ -54,8 +54,8 @@ export async function deleteCard(cardNumber) {
 
   if (userId) {
     await sql`
-      DELETE FROM
-        cards
+      UPDATE cards
+      set status = false
       WHERE
         id = ${cardNumber} AND
         user_id = ${userId}
@@ -69,16 +69,21 @@ export async function deleteCard(cardNumber) {
  * @param {number} user_id - The ID of the user.
  * @return {Promise<Array>} A promise that resolves to an array of card objects, or rejects with an error.
  */
-export async function getCards(user_id) {
+export async function getCards() {
+  const session = await auth();
+  const userId = session?.user?.id;
   try {
-    // Query the database for the user's cards
-    const data = await sql`
-      SELECT * 
-      FROM cards
-      WHERE user_id = ${user_id}`;
+    if (session.user) {
 
+      const data = await sql`
+        SELECT * 
+        FROM cards
+        WHERE user_id = ${user_id} 
+        AND status`;
+        return data.rows;
+    }
+    // Query the database for the user's cards
     // Return the cards as an array of rows
-    return data.rows;
   } catch (error) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
