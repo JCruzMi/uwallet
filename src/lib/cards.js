@@ -74,13 +74,12 @@ export async function getCards() {
   const userId = session?.user?.id;
   try {
     if (session.user) {
-
       const data = await sql`
         SELECT * 
         FROM cards
         WHERE user_id = ${user_id} 
         AND status`;
-        return data.rows;
+      return data.rows;
     }
     // Query the database for the user's cards
     // Return the cards as an array of rows
