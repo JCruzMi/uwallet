@@ -1,16 +1,10 @@
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { auth, signOut } from "../../../auth";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Button } from "../ui/Button";
+    DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel,
+    DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
+import { auth, signOut } from '../../../auth';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { Button } from '../ui/Button';
 
 // #region Functions (1)
 
@@ -20,7 +14,7 @@ export async function UserNav({ children }: any) {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+          <Button variant="ghost" className="relative h-8 w-8 rounded-full mt-0">
             <Avatar className="h-8 w-8">
               <AvatarImage
                 src={session.user?.username ?? ""}
