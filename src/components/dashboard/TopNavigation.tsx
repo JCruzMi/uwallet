@@ -1,5 +1,7 @@
 import Link from "next/link";
+
 import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/outline";
+
 import { signOut } from "../../../auth";
 import { Button } from "../ui/Button";
 import { UserNav } from "./UserNav";
@@ -8,7 +10,7 @@ import { UserNav } from "./UserNav";
 
 export default async function Navbar() {
   return (
-    <div className="fixed top-0 left-0 right-0 supports-backdrop-blur:bg-background/60 border-b bg-background/95 backdrop-blur z-20 ">
+    <div className="fixed top-0 left-0 right-0 supports-backdrop-blur:bg-secondary/60 border-b bg-background/95 backdrop-blur z-20 ">
       <nav className="h-14 flex items-center justify-between px-4 max-w-6xl mx-auto">
         <div className="block">
           <Link href="/">

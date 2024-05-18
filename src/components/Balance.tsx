@@ -22,7 +22,7 @@ export default function SliderCards() {
 
   if (loading) {
     return (
-      <p className="animate-pulse w-[200px] h-8 rounded-md bg-secondary"></p>
+      <p className="animate-pulse w-[200px] h-8 rounded-md bg-secondary/60"></p>
     );
   }
   return (
