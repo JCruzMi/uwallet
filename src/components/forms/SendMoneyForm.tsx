@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import { sendMoney } from "@/lib/cards";
 
 import { Button } from "../ui/Button";
-import { useToast } from "../ui/use-toast";
 import { Input } from "../ui/input";
+import { useToast } from "../ui/use-toast";
 
 export default function SendMoneyForm({
   numberSender,
@@ -50,17 +50,19 @@ export default function SendMoneyForm({
       toast({
         title: "Money Sent",
         description: "The money has been sent successfully",
+        variant: "success",
       });
     } catch (error: string | any) {
       toast({
         title: "Error",
         description: error.message,
+        variant: "error",
       });
     }
   });
 
   return (
-    <form onSubmit={onSubmit} className="max-w-sm">
+    <form onSubmit={onSubmit} className="max-w-xs w-full">
       <label
         htmlFor="Number card"
         className="text-slate-500 mb-2 block text-sm"
@@ -110,7 +112,7 @@ export default function SendMoneyForm({
         <span className="text-red-500 text-xs">{errors.amount.message}</span>
       )}
 
-      <Button>Submit</Button>
+      <Button>Send</Button>
     </form>
   );
 }

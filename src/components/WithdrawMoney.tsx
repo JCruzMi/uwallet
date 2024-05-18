@@ -31,7 +31,7 @@ export default function WithdrawMoney({
         Withdraw
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader className="max-w-sm px-1 flex justify-start flex-col items-start mx-auto">
+        <DrawerHeader className="max-w-xs w-full px-1 flex justify-start flex-col items-start mx-auto">
           <DrawerTitle>Withdraw Money</DrawerTitle>
           <DrawerDescription>
             Have your money from the card at your hand.
