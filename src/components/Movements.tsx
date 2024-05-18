@@ -57,11 +57,11 @@ export default function Movements() {
   if (loading) {
     return (
       <div className="flex flex-col gap-4 w-full">
-        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></div>
-        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></div>
-        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></div>
-        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></div>
-        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary"></div>
+        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary/60"></div>
+        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary/60"></div>
+        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary/60"></div>
+        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary/60"></div>
+        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary/60"></div>
       </div>
     );
   }
