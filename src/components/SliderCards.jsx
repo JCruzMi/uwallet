@@ -62,6 +62,7 @@ export default function SliderCards() {
                   name={item.name}
                   amount={item.amount}
                   number={item.id}
+                  ismain={item.ismain}
                 />
               ))
             ) : (

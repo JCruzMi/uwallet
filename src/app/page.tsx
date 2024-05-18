@@ -4,6 +4,7 @@ import Footer from '@/components/landing/Footer';
 import Hero from '@/components/landing/Hero';
 import Plans from '@/components/landing/Plans';
 import Navbar from '@/components/Navbar';
+import { Toaster } from '@/components/ui/toaster';
 
 // #region Functions (1)
 
@@ -19,6 +20,7 @@ export default function Home() {
         </div>
         <Footer />
       </main>
+      <Toaster />
     </SessionProvider>
   );
 }

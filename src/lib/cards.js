@@ -42,6 +42,31 @@ export async function createCard(name) {
   }
 }
 
+export async function createCardWithId(name, id) {
+  try {
+    // If the user is authenticated
+    // Generate a card ID
+    const idCard = generateCreditCard();
+
+    // Get the user ID from the session
+    const userId = parseInt(id);
+
+    // The initial amount is 0
+    const amount = 0;
+
+    // Insert the card into the database
+    await sql`
+        INSERT INTO
+          cards (name, id, user_id, amount, ismain)
+        VALUES
+          (${name}, ${idCard}, ${userId}, ${amount}, true)
+      `;
+  } catch (error) {
+    // If an error occurs, return the error as a JSON response
+    return NextResponse.json(error);
+  }
+}
+
 /**
  * Delete a credit card from the database.
  *
