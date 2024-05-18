@@ -17,8 +17,8 @@ CREATE TABLE cards (
   created_at TIMESTAMP NOT NULL default NOW()
 );
   
-INSERT INTO cards (id, amount, name, user_id) VALUES ('0000000000000000', 0, 'admin', 2);
-INSERT INTO cards (id, amount, name, user_id) VALUES ('0000000000000001', 0, 'admin', 2);
+INSERT INTO cards (id, amount, name, user_id) VALUES ('0000000000000000', 0, 'admin', 1);
+INSERT INTO cards (id, amount, name, user_id) VALUES ('0000000000000001', 0, 'admin', 1);
 
 CREATE TABLE movements (
   id SERIAL PRIMARY KEY, 

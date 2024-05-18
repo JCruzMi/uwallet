@@ -5,7 +5,6 @@ import Format from "../utils/format";
 import { DropdownMenuDemo } from "./DropdownMenuDemo";
 
 export default function Card({ name, amount, number, ismain }: CardType) {
-  console.log(ismain);
   return (
     <div className="border border-input bg-background hover:bg-accent hover:text-accent-foreground max-w-[230px] min-w-[230px] w-full min-h-[140px] rounded-lg flex flex-col justify-between p-4 text-primary text-base">
       <div>

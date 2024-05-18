@@ -30,7 +30,6 @@ export default function Register() {
       username: string;
       email: string;
     }) => {
-      console.log(data);
       if (data.password !== data.confirmPassword) {
         return toast({
           title: "Error",
