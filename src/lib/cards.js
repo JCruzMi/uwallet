@@ -45,21 +45,21 @@ export async function createCard(name) {
 /**
  * Delete a credit card from the database.
  *
- * @param {string} cardNumber - The card number to delete.
+ * @param {string} number_card - The card number to delete.
  * @return {Promise} A promise that resolves when the card is deleted, or rejects with an error.
  */
-export async function deleteCard(cardNumber) {
-  const session = await auth();
-  const userId = session?.user?.id;
-
-  if (userId) {
+export async function deleteCard(number_card) {
+  try {
+    // Delete the card from the database
     await sql`
       UPDATE cards
       set status = false
       WHERE
-        id = ${cardNumber} AND
-        user_id = ${userId}
+        id = ${number_card}
     `;
+  } catch (error) {
+    // If an error occurs, return the error as a JSON response
+    return NextResponse.json(error);
   }
 }
 
