@@ -1,15 +1,32 @@
 "use server";
 
+import { Suspense } from "react";
+
 import Balance from "@/components/Balance";
-import Navbar from "@/components/dashboard/Navbar";
 import TopNavigation from "@/components/dashboard/TopNavigation";
 import Movements from "@/components/Movements";
 import SliderCards from "@/components/SliderCards";
+import SliderCardsLoading from "@/components/SliderCardsLoading";
+import { Toaster } from "@/components/ui/toaster";
+import { getCards } from "@/lib/cards";
+import { Card } from "@/lib/definitions";
+
+interface DashboardProps {
+  // #region Properties (2)
+
+  amount: number | string;
+  cards: Card[];
+
+  // #endregion Properties (2)
+}
 
 const Dashboard = async () => {
+  const { cards, amount }: any = await getCards();
+
   return (
     <>
       <TopNavigation />
+      <title>UWallet - Dashboard</title>
       <main className="flex flex-col items-center justify-between lg:px-24 p-4 py-0 w-full relative pt-16 relative">
         <div className="flex absolute top-0 overflow-hidden w-full h-full blur-2xl">
           <svg
@@ -42,10 +59,18 @@ const Dashboard = async () => {
         <div className="z-10 max-w-5xl w-full items-start justify-start font-mono text-sm gap-4 flex flex-col relative pb-8 sm:pb-4">
           <div className="flex flex-col gap-0 py-4">
             <p className="text-sm font-semibold">Total Balance</p>
-            <Balance />
+            <Suspense
+              fallback={
+                <p className="animate-pulse w-[200px] h-8 rounded-md bg-secondary/60"></p>
+              }
+            >
+              <Balance amount={amount} />
+            </Suspense>
           </div>
           <div className="flex flex-row w-full gap-4 max-h-[140px] overflow-hidden">
-            <SliderCards />
+            <Suspense fallback={<SliderCardsLoading />}>
+              <SliderCards cards={cards} />
+            </Suspense>
           </div>
           <div className="flex justify-between w-full">
             <h2 className="font-semibold">Movements</h2>
@@ -53,9 +78,22 @@ const Dashboard = async () => {
               View all
             </p>
           </div>
-          <Movements />
+          <Suspense
+            fallback={
+              <div className="flex flex-col gap-4 w-full">
+                <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary/60"></div>
+                <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary/60"></div>
+                <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary/60"></div>
+                <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary/60"></div>
+                <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary/60"></div>
+              </div>
+            }
+          >
+            <Movements />
+          </Suspense>
         </div>
         {/* <Navbar /> */}
+        <Toaster />
       </main>
     </>
   );

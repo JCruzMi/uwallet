@@ -42,7 +42,7 @@ export default function Plans() {
     },
   ];
   return (
-    <>
+    <div id="pricing">
       <div className="flex flex-col gap-4 text-center mt-8">
         <p className="text-2xl font-medium">Flexible plans for you</p>
         <p className="text-lg">No hidden fees!</p>
@@ -95,6 +95,6 @@ export default function Plans() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

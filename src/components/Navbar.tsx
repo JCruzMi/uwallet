@@ -25,9 +25,9 @@ export default function Navbar() {
             </Button>
           </Link>
           <div className="flex">
-            <Link href="/#services">
+            <Link href="/#features">
               <Button variant="ghost" className="flex gap-2 text-primary px-2">
-                Services
+                Features
               </Button>
             </Link>
             <Link href="/#pricing">

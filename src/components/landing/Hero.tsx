@@ -6,20 +6,21 @@ const Hero = () => {
   return (
     <>
       <div className="px-5 pt-4 pb-8 max-w-6xl m-auto z-20">
-        <h1 className="text-info font-medium text-[32px] text-center lg:text-6xl lg:pt-11 lg:pb-6">
-          La Plataforma Definitiva para Centralizar y Gestionar tus Tarjetas
+        <h1 className="text-info font-medium text-[32px] text-center lg:text-6xl lg:pt-11 lg:pb-6 text-balance">
+          The Definitive Platform to Centralize and Manage your Cards
         </h1>
-        <p className="text-primary text-center text-[16px] lg:text-[18px] mt-6">
-          Con uWallet, simplifica tu vida financiera al centralizar todas tus
-          tarjetas de débito y crédito en una sola plataforma. Realiza
-          transferencias, depósitos, retiros y paga servicios, todo desde un
-          solo lugar.
+        <p className="text-primary text-center text-[16px] lg:text-[18px] mt-6 text-balance">
+          With UWallet, simplify your financial life by centralizing all your
+          debit and credit cards on a single platform. Makes transfers,
+          deposits, withdrawals and payment services, all from one only place.
         </p>
       </div>
       <div className="px-5 pb-0 max-w-6xl flex justify-center items-center gap-x-6 lg:gap-x-10 z-20">
-        <Button className="w-auto">Try for free</Button>
+        <Link href="/register">
+          <Button className="w-auto">Try for free</Button>
+        </Link>
 
-        <Link href="#">
+        <Link href="#pricing">
           <Button variant="outline" className="w-auto">
             View Pricing
           </Button>

@@ -68,9 +68,9 @@ export async function getMovements() {
       // Query the database for the user's movements
       const data = await sql`
         SELECT * , 
-        CASE WHEN user_id_sender = 2 THEN 'true' ELSE 'false' END AS deposit,
-        CASE WHEN user_id_receiver = 2 THEN 'true' ELSE 'false' END AS draw,
-        CASE WHEN user_id_sender <> 2 AND user_id_receiver <> 2 THEN 'transfer' 
+        CASE WHEN user_id_sender = 1 THEN 'true' ELSE 'false' END AS deposit,
+        CASE WHEN user_id_receiver = 1 THEN 'true' ELSE 'false' END AS draw,
+        CASE WHEN user_id_sender <> 1 AND user_id_receiver <> 1 THEN 'transfer' 
         WHEN user_id_sender = ${session?.user.id} THEN 'draw' 
         WHEN user_id_receiver = ${session?.user.id} THEN 'deposit' END AS type
         FROM movements
@@ -80,7 +80,9 @@ export async function getMovements() {
         LIMIT 5`;
 
       // Return the movements as an array of rows
-      return data.rows;
+      return {
+        movements: data.rows,
+      };
     } catch (error) {
       // If an error occurs, return the error as a JSON response
       return NextResponse.json(error);

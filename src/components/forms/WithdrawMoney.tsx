@@ -49,7 +49,7 @@ export default function WithdrawMoneyForm({
       toast({
         title: "Error",
         description: error.message,
-        variant: "success",
+        variant: "error",
       });
     }
   });
