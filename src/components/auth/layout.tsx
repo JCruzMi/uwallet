@@ -10,8 +10,10 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
     <>
       <div className="relative min-h-[100svh] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
-          <div className="absolute inset-0 bg-zinc-900" />
-          <div className="relative flex items-center text-lg font-medium gap-3 w-auto">
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-[#180027] to-[#1e0349] z-0 items-center flex justify-center">
+            <div className="bg-[url(/images/deditos.webp)] bg-no-repeat bg-contain max-w-sm bg-center mx-auto absolute inset-0" />
+          </div>
+          <div className="relative flex items-center text-lg font-medium gap-3 w-auto z-20">
             <Link href="/">
               <Button variant="ghost" className="flex gap-2">
                 <svg

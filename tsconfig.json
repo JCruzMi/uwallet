@@ -27,7 +27,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/Slider.jsx",
-    "src/components/SectionSend.jsx"
+    "src/components/SectionSend.jsx",
+    "src/lib/cards.js"
   ],
   "exclude": ["node_modules"]
 }

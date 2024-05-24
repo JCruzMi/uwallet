@@ -5,6 +5,9 @@ import { sql } from "@vercel/postgres";
 import { auth } from "../../auth";
 import { generateCreditCard } from "./utils";
 import { createMovement } from "./movements";
+import Format from "@/utils/format";
+import { unstable_noStore as noStore, revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 /**
  * Create a credit card for a user.
@@ -40,6 +43,8 @@ export async function createCard(name) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
   }
+  revalidatePath("/dashboard");
+  redirect("/dashboard");
 }
 
 export async function createCardWithId(name, id) {
@@ -61,10 +66,13 @@ export async function createCardWithId(name, id) {
         VALUES
           (${name}, ${idCard}, ${userId}, ${amount}, true)
       `;
+    
   } catch (error) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
   }
+  revalidatePath("/dashboard");
+  redirect("/dashboard");
 }
 
 /**
@@ -82,10 +90,13 @@ export async function deleteCard(number_card) {
       WHERE
         id = ${number_card}
     `;
+    
   } catch (error) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
   }
+  revalidatePath("/dashboard");
+    redirect("/dashboard");
 }
 
 /**
@@ -95,19 +106,22 @@ export async function deleteCard(number_card) {
  * @return {Promise<Array>} A promise that resolves to an array of card objects, or rejects with an error.
  */
 export async function getCards() {
+  noStore();
   const session = await auth();
-  const userId = session?.user?.id;
   try {
     if (session.user) {
+      const userId = session?.user?.id;
       const data = await sql`
         SELECT * 
         FROM cards
-        WHERE user_id = ${user_id} 
+        WHERE user_id = ${userId} 
         AND status`;
-      return data.rows;
+
+      return {
+        cards: data.rows,
+        amount: Format(data.rows.reduce((acc, item) => acc + item.amount, 0)),
+      };
     }
-    // Query the database for the user's cards
-    // Return the cards as an array of rows
   } catch (error) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
@@ -131,10 +145,13 @@ export async function sendMoney(number_sender, number_receiver, amount) {
     await sql`update cards set amount = amount - ${amount} where id = ${number_sender}`;
     // Create a new movement record
     createMovement(number_sender, number_receiver, amount);
+    
   } catch (error) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
   }
+  revalidatePath("/dashboard");
+    redirect("/dashboard");
 }
 
 /**
@@ -150,22 +167,19 @@ export async function depositMoney(number_receiver, amount) {
   try {
     // If the user is logged in
     if (session?.user) {
-      // Get the user's ID
-      const user_id_receiver = parseInt(session.user.id);
       // Set the sender's card number and user ID
       const number_sender = "0000000000000000";
-      const user_id_sender = 2;
       // Increase the receiver's balance by the deposit amount
       await sql`update cards set amount = amount + ${amount} where id = ${number_receiver}`;
       // Create a new movement record
-      await sql`
-        insert into movements (number_sender, number_receiver, amount, user_id_sender, user_id_receiver) 
-        values (${number_sender}, ${number_receiver}, ${amount}, ${user_id_sender}, ${user_id_receiver})`;
+      createMovement(number_sender, number_receiver, amount);
     }
   } catch (error) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
   }
+  revalidatePath("/dashboard");
+      redirect("/dashboard");
 }
 
 /**
@@ -181,22 +195,20 @@ export async function withdrawMoney(number_sender, amount) {
   try {
     // If the user is logged in
     if (session?.user) {
-      // Get the user's ID
-      const user_id_sender = parseInt(session.user.id);
       // Set the receiver's card number and user ID
       const number_receiver = "0000000000000001";
-      const user_id_receiver = 2;
+
       // Decrease the sender's balance by the withdrawal amount
       await sql`update cards set amount = amount - ${amount} where id = ${number_sender}`;
       // Create a new movement record
-      await sql`
-        insert into movements (number_sender, number_receiver, amount, user_id_sender, user_id_receiver) 
-        values (${number_sender}, ${number_receiver}, ${amount}, ${user_id_sender}, ${user_id_receiver})`;
+      createMovement(number_sender, number_receiver, amount);
     }
   } catch (error) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
   }
+  revalidatePath("/dashboard");
+      redirect("/dashboard");
 }
 
 /**
@@ -213,8 +225,11 @@ export async function updateCard(id, name) {
       update cards
       set name = ${name}
       where id = ${id}`;
+    
   } catch (error) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
   }
+  revalidatePath("/dashboard");
+    redirect("/dashboard");
 }

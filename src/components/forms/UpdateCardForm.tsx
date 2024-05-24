@@ -3,11 +3,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
+import { toast } from "@/components/ui/use-toast";
 import { deleteCard, updateCard } from "@/lib/cards";
 
 import { Button } from "../ui/Button";
 import { Input } from "../ui/input";
-import { useToast } from "../ui/use-toast";
 
 export default function UpdateCardForm({ number }: { number: string }) {
   const {
@@ -21,8 +21,6 @@ export default function UpdateCardForm({ number }: { number: string }) {
       name: "",
     },
   });
-
-  const { toast } = useToast();
 
   const onSubmit = handleSubmit(async (data) => {
     try {
