@@ -1,32 +1,14 @@
-"use client";
-import moment from "moment";
-import { useEffect, useState } from "react";
+"use server";
+import moment from 'moment';
 
-import { Movement } from "@/lib/definitions";
-import { getMovements } from "@/lib/movements";
-import Format from "@/utils/format";
+import { getMovements } from '@/lib/movements';
+import Format from '@/utils/format';
 import {
-  ArrowTrendingDownIcon,
-  ArrowTrendingUpIcon,
-  BanknotesIcon,
-  CurrencyDollarIcon,
-  PaperAirplaneIcon,
-} from "@heroicons/react/24/outline";
+    ArrowTrendingDownIcon, ArrowTrendingUpIcon, BanknotesIcon, CurrencyDollarIcon, PaperAirplaneIcon
+} from '@heroicons/react/24/outline';
 
-export default function Movements() {
-  const [movements, setMovements] = useState<Movement[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-    getMovements()
-      .then((res: any) => {
-        setMovements(res);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+export default async function Movements() {
+  const { movements } : any = await getMovements();
 
   const iconType = (type: string) => {
     switch (type) {
@@ -54,17 +36,6 @@ export default function Movements() {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="flex flex-col gap-4 w-full">
-        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary/60"></div>
-        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary/60"></div>
-        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary/60"></div>
-        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary/60"></div>
-        <div className="animate-pulse w-full h-[92px] rounded-md bg-secondary/60"></div>
-      </div>
-    );
-  }
   return (
     <div className="flex flex-col gap-4 w-full">
       {movements.length === 0 ? (
@@ -72,7 +43,7 @@ export default function Movements() {
           Not movements allowed
         </div>
       ) : (
-        movements.map((item) => (
+        movements.map((item: any) => (
           <div
             key={item.id}
             className="flex justify-between gap-2 bg-background border border-input p-4 rounded-lg w-full"
