@@ -1,5 +1,3 @@
-import Movements from "@/components/Movements";
-
 // #region Type aliases (5)
 
 export type Card = {

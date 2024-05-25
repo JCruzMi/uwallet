@@ -3,10 +3,7 @@
 import { AuthError } from "next-auth";
 import { SignInOptions } from "next-auth/react";
 
-import { sql } from "@vercel/postgres";
-
-import { auth, signIn } from "../../auth";
-import { Card, User } from "./definitions";
+import { signIn } from "../../auth";
 
 export async function authenticate(formData: SignInOptions) {
   try {
@@ -21,20 +18,5 @@ export async function authenticate(formData: SignInOptions) {
       }
     }
     throw error;
-  }
-}
-
-export async function getCards(): Promise<Card[] | undefined | void> {
-  const session = await auth();
-  if (session?.user) {
-    try {
-      const data = await sql`
-      SELECT * 
-      FROM cards
-      WHERE user_id = ${session?.user.id} AND status`;
-      return data.rows as Card[];
-    } catch (error) {
-      return [];
-    }
   }
 }
