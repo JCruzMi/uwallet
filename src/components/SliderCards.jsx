@@ -4,11 +4,12 @@ import "slick-carousel/slick/slick.css";
 
 import Slider from "react-slick";
 
-// import { useState } from "react";
+import { useState } from "react";
 import Card from "./Card";
 import CreateCard from "./CreateCard";
 
 export default function SliderCards({ cards }) {
+  const [sliderRef, setSliderRef] = useState(null);
   const settings = {
     dots: false,
     className: "slider variable-width",
@@ -30,7 +31,7 @@ export default function SliderCards({ cards }) {
           <Slider
             {...settings}
             arrows={false}
-            // ref={setSliderRef}
+            ref={setSliderRef}
             className="items-stretch justify-items-stretch w-full flex h-full gap-4 rounded-lg"
           >
             {cards.length > 0 ? (
