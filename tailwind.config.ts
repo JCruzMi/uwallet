@@ -18,6 +18,11 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -67,14 +72,62 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        gradient: {
+          to: {
+            backgroundPosition: "var(--bg-size) 0",
+          },
+        },
+        "border-beam": {
+          "100%": {
+            "offset-distance": "100%",
+          },
+        },
+        buttonheartbeat: {
+          "0%": {
+            "box-shadow": '0 0 0 0 theme("colors.blue.500")',
+            transform: "scale(1)",
+          },
+          "50%": {
+            "box-shadow": '0 0 0 7px theme("colors.blue.500/0")',
+            transform: "scale(1.05)",
+          },
+          "100%": {
+            "box-shadow": '0 0 0 0 theme("colors.blue.500/0")',
+            transform: "scale(1)",
+          },
+        },
+        shimmer: {
+          "0%, 90%, 100%": {
+            "background-position": "calc(-100% - var(--shimmer-width)) 0",
+          },
+          "30%, 60%": {
+            "background-position": "calc(100% + var(--shimmer-width)) 0",
+          },
+        },
+        "background-shine": {
+          from: {
+            backgroundPosition: "0 0",
+          },
+          to: {
+            backgroundPosition: "-200% 0",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        gradient: "gradient 8s linear infinite",
+        "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
+        buttonheartbeat: "buttonheartbeat 2s infinite ease-in-out",
+        "background-shine": "background-shine 2s linear infinite",
+        shimmer: "shimmer 8s infinite",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("tailwindcss-dotted-background"),
+  ],
 } satisfies Config;
 
 export default config;

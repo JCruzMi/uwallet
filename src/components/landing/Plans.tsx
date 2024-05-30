@@ -1,100 +1,228 @@
-import React from "react";
+"use client";
 
-export default function Plans() {
-  const plans = [
-    {
-      name: "Easy",
-      discretion:
-        "All the basics for businesses that are just getting started.",
-      price: {
-        monthly: 29,
-        annually: 29 * 12 - 199,
-      },
-      features: ["One project", "Your dashboard"],
-    },
-    {
-      name: "Basic",
-      discretion: "Better for growing businesses that want more customers.",
-      price: {
-        monthly: 59,
-        annually: 59 * 12 - 100,
-      },
-      features: [
-        "Two projects",
-        "Your dashboard",
-        "Components included",
-        "Advanced charts",
-      ],
-    },
-    {
-      name: "Custom",
-      discretion: "Advanced features for pros who need more customization.",
-      price: {
-        monthly: 139,
-        annually: 139 * 12 - 100,
-      },
-      features: [
-        "Unlimited projects",
-        "Your dashboard",
-        "+300 Components",
-        "Chat support",
-      ],
-    },
-  ];
-  return (
-    <div id="pricing">
-      <div className="flex flex-col gap-4 text-center mt-8">
-        <p className="text-2xl font-medium">Flexible plans for you</p>
-        <p className="text-lg">No hidden fees!</p>
-      </div>
-      <div className="flex flex-col items-center justify-center mt-8 space-y-8 lg:flex-row lg:items-stretch lg:space-x-8 lg:space-y-0 px-4">
-        {plans.map((plan, i) => (
-          <div
-            key={i}
-            className="flex flex-col w-full max-w-sm p-12 space-y-6 bg-primary rounded-md shadow-md"
-          >
-            <div className="flex-shrink-0">
-              <span
-                className={`${plan.name == "Basic" ? "text-green-500" : ""} text-background text-4xl font-medium tracking-tight`}
-              >
-                {plan.price.monthly}
-              </span>
-              <span className="text-background/90">/month</span>
-            </div>
-            <div className="flex-shrink-0 pb-6 space-y-2 border-b">
-              <h2 className="text-2xl font-normal text-background">
-                {plan.name}
-              </h2>
-              <p className="text-sm text-background/90">{plan.discretion}</p>
-            </div>
-            <ul className="flex-1 space-y-4">
-              {plan.features.map((feature, i) => (
-                <li key={i} className="flex items-start">
-                  <svg
-                    className="w-6 h-6 text-green-300"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
-                  </svg>
-                  <span className="ml-3 text-base font-medium text-background">
-                    {feature}
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <div className="flex-shrink-0 pt-4">
-              <button
-                className={`text-background ${plan.name == "Basic" ? "bg-indigo-500 !text-white hover:bg-indigo-700" : "hover:bg-indigo-500 hover:text-white"} inline-flex items-center justify-center w-full max-w-xs px-4 py-2 transition-colors border rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
-              >
-                {plan.name}
-              </button>
+import { CheckCircle2 } from "lucide-react";
+import React, { useState } from "react";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { cn } from "@/lib/utils";
+
+import { Button } from "../ui/Button";
+
+type PricingSwitchProps = {
+  onSwitch: (value: string) => void;
+};
+
+type PricingCardProps = {
+  handleCheckout: any;
+  priceIdMonthly: any;
+  priceIdYearly: any;
+  isYearly?: boolean;
+  title: string;
+  monthlyPrice?: number;
+  yearlyPrice?: number;
+  description: string;
+  features: string[];
+  actionLabel: string;
+  popular?: boolean;
+  exclusive?: boolean;
+};
+
+const PricingHeader = ({
+  title,
+  subtitle,
+}: {
+  title: string;
+  subtitle: string;
+}) => (
+  <section className="text-center">
+    <h2 className="text-3xl lg:text-5xl font-bold">{title}</h2>
+    <p className="text-lg text-gray-400 pt-1">{subtitle}</p>
+    <br />
+  </section>
+);
+
+const PricingSwitch = ({ onSwitch }: PricingSwitchProps) => (
+  <Tabs defaultValue="0" className="w-40 mx-auto" onValueChange={onSwitch}>
+    <TabsList className="py-6 px-2">
+      <TabsTrigger value="0" className="text-base">
+        Monthly
+      </TabsTrigger>
+      <TabsTrigger value="1" className="text-base">
+        Yearly
+      </TabsTrigger>
+    </TabsList>
+  </Tabs>
+);
+
+const PricingCard = ({
+  handleCheckout,
+  isYearly,
+  title,
+  priceIdMonthly,
+  priceIdYearly,
+  monthlyPrice,
+  yearlyPrice,
+  description,
+  features,
+  actionLabel,
+  popular,
+  exclusive,
+}: PricingCardProps) => (
+  <Card
+    className={cn(
+      `w-72 bg-zinc-700/10 flex flex-col justify-between py-1 ${popular ? "border-rose-400" : "border-zinc-700"} mx-auto sm:mx-0`,
+      {
+        "animate-background-shine bg-white dark:bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] transition-colors":
+          exclusive,
+      }
+    )}
+  >
+    <div>
+      <CardHeader className="pb-8 pt-4">
+        {isYearly && yearlyPrice && monthlyPrice ? (
+          <div className="flex justify-between">
+            <CardTitle className="text-zinc-700 dark:text-zinc-300 text-lg">
+              {title}
+            </CardTitle>
+            <div
+              className={cn(
+                "px-2.5 rounded-xl h-fit text-sm py-1 bg-zinc-200 text-black dark:bg-zinc-800 dark:text-white",
+                {
+                  "bg-gradient-to-r from-orange-400 to-rose-400 dark:text-black ":
+                    popular,
+                }
+              )}
+            >
+              Save ${monthlyPrice * 12 - yearlyPrice}
             </div>
           </div>
+        ) : (
+          <CardTitle className="text-zinc-700 dark:text-zinc-300 text-lg">
+            {title}
+          </CardTitle>
+        )}
+        <div className="flex gap-0.5">
+          <h3 className="text-3xl font-bold">
+            {yearlyPrice && isYearly
+              ? "$" + yearlyPrice
+              : monthlyPrice
+                ? "$" + monthlyPrice
+                : "Custom"}
+          </h3>
+          <span className="flex flex-col justify-end text-sm mb-1">
+            {yearlyPrice && isYearly ? "/year" : monthlyPrice ? "/month" : null}
+          </span>
+        </div>
+        <CardDescription className="pt-1.5 h-12">{description}</CardDescription>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-2">
+        {features.map((feature: string) => (
+          <CheckItem key={feature} text={feature} />
         ))}
-      </div>
+      </CardContent>
+    </div>
+    <CardFooter className="mt-2">
+      <Button
+        onClick={() =>
+          handleCheckout(isYearly ? priceIdYearly : priceIdMonthly, true)
+        }
+        className="relative inline-flex w-full items-center justify-center rounded-md bg-black text-white dark:bg-white px-6 font-medium  dark:text-black transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+      >
+        <div className="absolute -inset-0.5 -z-10 rounded-lg bg-gradient-to-b from-[#c7d2fe] to-[#8678f9] opacity-75 blur" />
+        {actionLabel}
+      </Button>
+    </CardFooter>
+  </Card>
+);
+
+const CheckItem = ({ text }: { text: string }) => (
+  <div className="flex gap-2">
+    <CheckCircle2 size={18} className="my-auto text-green-400" />
+    <p className="pt-0.5 text-zinc-700 dark:text-zinc-300 text-sm">{text}</p>
+  </div>
+);
+
+export default function Pricing() {
+  const [isYearly, setIsYearly] = useState<boolean>(false);
+  const togglePricingPeriod = (value: string) =>
+    setIsYearly(parseInt(value) === 1);
+
+  const handleCheckout = async (priceId: string, subscription: boolean) => {};
+
+  const plans = [
+    {
+      title: "Basic",
+      monthlyPrice: 10,
+      yearlyPrice: 100,
+      description: "Essential features you need to get started",
+      features: [
+        "Example Feature Number 1",
+        "Example Feature Number 2",
+        "Example Feature Number 3",
+      ],
+      priceIdMonthly: "price_1OHwQqKCuFqcLnh8QmcSRSQ9",
+      priceIdYearly: "price_1OHwQqKCuFqcLnh8QmcSRSQ9",
+      actionLabel: "Get Started",
+    },
+    {
+      title: "Pro",
+      monthlyPrice: 25,
+      yearlyPrice: 250,
+      description: "Perfect for owners of small & medium businessess",
+      features: [
+        "Example Feature Number 1",
+        "Example Feature Number 2",
+        "Example Feature Number 3",
+      ],
+      actionLabel: "Get Started",
+      priceIdMonthly: "price_1OHwQqKCuFqcLnh8QmcSRSQ9",
+      priceIdYearly: "price_1OHwQqKCuFqcLnh8QmcSRSQ9",
+      popular: true,
+      exclusive: true,
+    },
+    {
+      title: "Enterprise",
+      price: "Custom",
+      description: "Dedicated support and infrastructure to fit your needs",
+      features: [
+        "Example Feature Number 1",
+        "Example Feature Number 2",
+        "Example Feature Number 3",
+        "Super Exclusive Feature",
+      ],
+      actionLabel: "Contact Sales",
+      priceIdMonthly: "price_1OHwQqKCuFqcLnh8QmcSRSQ9",
+      priceIdYearly: "price_1OHwQqKCuFqcLnh8QmcSRSQ9",
+    },
+  ];
+
+  return (
+    <div>
+      <PricingHeader
+        title="Sample Pricing Plans"
+        subtitle="Use these sample pricing cards in your SAAS"
+      />
+      <PricingSwitch onSwitch={togglePricingPeriod} />
+      <section className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-8 mt-8">
+        {plans.map((plan) => {
+          return (
+            <PricingCard
+              handleCheckout={handleCheckout}
+              key={plan.title}
+              {...plan}
+              isYearly={isYearly}
+            />
+          );
+        })}
+      </section>
     </div>
   );
 }

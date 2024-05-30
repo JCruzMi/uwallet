@@ -1,13 +1,13 @@
 "use client";
+import { SessionProvider } from "next-auth/react";
 import Link from "next/link";
 import { ReactNode } from "react";
 
 import { Button } from "@/components/ui/Button";
-import { Toaster } from "@/components/ui/toaster";
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
   return (
-    <>
+    <SessionProvider>
       <div className="relative min-h-[100svh] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
           <div className="absolute inset-0 bg-gradient-to-b from-background via-[#180027] to-[#1e0349] z-0 items-center flex justify-center">
@@ -99,7 +99,6 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
       </div>
-      <Toaster />
-    </>
+    </SessionProvider>
   );
 }
