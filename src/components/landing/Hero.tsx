@@ -1,73 +1,53 @@
+"use client";
 import Link from "next/link";
 
+import { BorderBeam } from "../magicui/border-beam";
 import { Button } from "../ui/Button";
 
-const Hero = () => {
+export default function HeroSection() {
   return (
-    <>
-      <div className="px-5 pt-4 pb-8 max-w-6xl m-auto z-20">
-        <h1 className="text-info font-medium text-[32px] text-center lg:text-6xl lg:pt-11 lg:pb-6 text-balance">
-          The Definitive Platform to Centralize and Manage your Cards
-        </h1>
-        <p className="text-primary text-center text-[16px] lg:text-[18px] mt-6 text-balance">
-          With UWallet, simplify your financial life by centralizing all your
-          debit and credit cards on a single platform. Makes transfers,
-          deposits, withdrawals and payment services, all from one only place.
-        </p>
-      </div>
-      <div className="px-5 pb-0 max-w-6xl flex justify-center items-center gap-x-6 lg:gap-x-10 z-20">
-        <Link href="/register">
-          <Button className="w-auto">Try for free</Button>
+    <div className="flex flex-col items-center justify-center leading-6">
+      <h1 className="text-balance z-10 scroll-m-20 text-4xl sm:text-4xl md:text-5xl font-semibold tracking-tight lg:text-6xl text-center max-w-[1120px] bg-gradient-to-b to-gray-600/80 from-white inline-block text-transparent bg-clip-text">
+        The Definitive Platform to Centralize and Manage your Cards
+      </h1>
+      <p className="text-balance z-10 mx-auto max-w-[700px] text-gray-500 md:text-lg text-center mt-2 dark:text-gray-400">
+        With UWallet, simplify your financial life by centralizing all your
+        debit and credit cards on a single platform. Makes transfers, deposits,
+        withdrawals and payment services, all from one only place.
+      </p>
+      <div className="z-10 flex justify-center items-center gap-4">
+        <Link href="/dashboard" className="mt-5">
+          <Button
+            size="sm"
+            className="animate-buttonheartbeat rounded-md bg-primary text-sm font-semibold text-accent"
+          >
+            Get Started
+          </Button>
         </Link>
-
-        <Link href="#pricing">
-          <Button variant="outline" className="w-auto">
+        <Link href="/" target="_blank" className="mt-5">
+          <Button size="sm" variant="outline">
             View Pricing
           </Button>
         </Link>
       </div>
-      <div className="w-full h-full relative flex justify-center">
-        <div className="min-h-[500px] sm:min-h-[600px] md:min-h-[700px] w-full lg:min-h-[760px]">
-          <div className="bg-gradient-to-t from-zinc-900/40 backdrop-blur-md w-full h-[310px] bottom-0 absolute !z-0"></div>
-          <div className="flex absolute bottom-0 overflow-hidden w-full h-full blur-2xl">
-            <svg
-              viewBox="0 0 1024 1024"
-              className="absolute left-1/2 bottom-0 -z-10 h-[64rem] w-[64rem] -translate-x-1/2"
-              aria-hidden="true"
-            >
-              <circle
-                cx="512"
-                cy="512"
-                r="512"
-                fill="url(#759c1415-0410-454c-8f7c-9a820de03641)"
-                fillOpacity="0.5"
-              ></circle>
-              <defs>
-                <radialGradient
-                  id="759c1415-0410-454c-8f7c-9a820de03641"
-                  cx="0"
-                  cy="0"
-                  r="1"
-                  gradientUnits="userSpaceOnUse"
-                  gradientTransform="translate(512 512) rotate(90) scale(512)"
-                >
-                  <stop stopColor="#4F46E5"></stop>
-                  <stop offset="1" stopColor="#E935C1" stopOpacity="0"></stop>
-                </radialGradient>
-              </defs>
-            </svg>
+      <div>
+        <div className="relative flex max-w-6xl justify-center overflow-hidden mt-7">
+          <div className="relative rounded-xl">
+            <img
+              src="/images/web.png"
+              alt="Hero Image"
+              className="block w-[1200px] rounded-[inherit] border object-contain shadow-lg dark:hidden z-10"
+            />
+            <img
+              src="/images/web.png"
+              alt="Hero Image"
+              className="dark:block w-[1200px] rounded-[inherit] border object-contain shadow-lg hidden z-10"
+            />
+
+            <BorderBeam size={250} duration={12} delay={9} />
           </div>
         </div>
-        <div className="absolute bottom-12 left-4 right-4 max-w-6xl mx-auto">
-          <img
-            className="rounded-md w-auto h-[310px] sm:h-[410px] md:h-[510px] lg:h-[600px] !z-10"
-            src="/images/web.png"
-            alt="heroImage"
-          />
-        </div>
       </div>
-    </>
+    </div>
   );
-};
-
-export default Hero;
+}
