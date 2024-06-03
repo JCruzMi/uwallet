@@ -66,7 +66,6 @@ export async function createCardWithId(name, id) {
         VALUES
           (${name}, ${idCard}, ${userId}, ${amount}, true)
       `;
-    
   } catch (error) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
@@ -86,17 +85,30 @@ export async function deleteCard(number_card) {
     // Delete the card from the database
     await sql`
       UPDATE cards
-      set status = false
+      SET status = false
       WHERE
         id = ${number_card}
     `;
-    
+    const data = await sql`
+      SELECT *
+      FROM cards
+      WHERE 
+        id = ${number_card}
+    `;
+    const row = await data.rows[0];
+    // Update main card and sum amount
+    await sql`
+      UPDATE cards
+      SET amount = amount + ${row.amount}
+      WHERE ismain = true
+      AND user_id = ${row.user_id}
+    `;
   } catch (error) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
   }
   revalidatePath("/dashboard");
-    redirect("/dashboard");
+  redirect("/dashboard");
 }
 
 /**
@@ -145,13 +157,12 @@ export async function sendMoney(number_sender, number_receiver, amount) {
     await sql`update cards set amount = amount - ${amount} where id = ${number_sender}`;
     // Create a new movement record
     createMovement(number_sender, number_receiver, amount);
-    
   } catch (error) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
   }
   revalidatePath("/dashboard");
-    redirect("/dashboard");
+  redirect("/dashboard");
 }
 
 /**
@@ -179,7 +190,7 @@ export async function depositMoney(number_receiver, amount) {
     return NextResponse.json(error);
   }
   revalidatePath("/dashboard");
-      redirect("/dashboard");
+  redirect("/dashboard");
 }
 
 /**
@@ -208,7 +219,7 @@ export async function withdrawMoney(number_sender, amount) {
     return NextResponse.json(error);
   }
   revalidatePath("/dashboard");
-      redirect("/dashboard");
+  redirect("/dashboard");
 }
 
 /**
@@ -225,11 +236,10 @@ export async function updateCard(id, name) {
       update cards
       set name = ${name}
       where id = ${id}`;
-    
   } catch (error) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
   }
   revalidatePath("/dashboard");
-    redirect("/dashboard");
+  redirect("/dashboard");
 }

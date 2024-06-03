@@ -25,7 +25,7 @@ export default function SendMoneyForm({
     defaultValues: {
       numberSender: numberSender,
       number: "",
-      amount: "0",
+      amount: "",
     },
   });
 
@@ -99,9 +99,10 @@ export default function SendMoneyForm({
           $
         </span>
         <Input
-          type="text"
+          type="number"
           {...register("amount", {
             required: "Amount is required",
+            valueAsNumber: true,
           })}
           className="pl-10 w-full"
           placeholder="0"
