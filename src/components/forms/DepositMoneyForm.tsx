@@ -24,7 +24,7 @@ export default function DepositMoneyForm({
   } = useForm({
     defaultValues: {
       number: number,
-      amount: "0",
+      amount: "",
     },
   });
 
@@ -62,9 +62,10 @@ export default function DepositMoneyForm({
           $
         </span>
         <Input
-          type="text"
+          type="number"
           {...register("amount", {
             required: "Amount is required",
+            valueAsNumber: true,
           })}
           className="pl-10 w-full"
           placeholder="0"

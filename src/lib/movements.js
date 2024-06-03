@@ -3,7 +3,8 @@
 import { NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
 import { auth } from "../../auth";
-
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 /**
  * Creates a new movement in the database.
  *
@@ -29,10 +30,13 @@ export async function createMovement(number_sender, number_receiver, amount) {
     await sql`
       INSERT INTO movements (number_sender, number_receiver, amount, user_id_sender, user_id_receiver)
       VALUES (${number_sender}, ${number_receiver}, ${amount}, ${parseInt(user_id_sender.rows[0].id)}, ${parseInt(user_id_receiver.rows[0].id)})`;
+    await getMovements();
   } catch (error) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
   }
+  // revalidatePath("/dashboard");
+  // redirect("/dashboard");
 }
 
 /**
@@ -50,6 +54,8 @@ export async function deleteMovement(id) {
     // If there is an error, return a JSON response with the error.
     return NextResponse.json(error);
   }
+  revalidatePath("/dashboard");
+  redirect("/dashboard");
 }
 
 /**
