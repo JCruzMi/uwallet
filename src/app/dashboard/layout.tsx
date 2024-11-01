@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 
 import TopNavigation from "@/components/dashboard/TopNavigation";
 import { Toaster } from "@/components/ui/toaster";
+import { Footer } from "@/components/dashboard/Footer";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
@@ -41,6 +42,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         </div>
       </main>
       <Toaster />
+      <Footer />
     </>
   );
 }

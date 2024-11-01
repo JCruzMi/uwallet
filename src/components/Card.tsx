@@ -6,7 +6,7 @@ import { DropdownMenuDemo } from "./DropdownMenuDemo";
 
 export default function Card({ name, amount, number, ismain }: CardType) {
   return (
-    <div className="border border-input bg-background hover:bg-accent hover:text-accent-foreground max-w-[230px] min-w-[230px] w-full min-h-[140px] rounded-lg flex flex-col justify-between p-4 text-primary text-base">
+    <div className="transition-all border border-input bg-background/60 hover:border-accent-foreground hover:text-accent-foreground max-w-[230px] min-w-[230px] w-full min-h-[140px] rounded-lg flex flex-col justify-between p-4 text-primary text-base">
       <div>
         <div className="flex items-center justify-between gap-4">
           <div className="line-clamp-1">{name}</div>
