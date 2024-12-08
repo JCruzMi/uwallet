@@ -13,6 +13,7 @@ import {
 import { PlusIcon } from "@heroicons/react/16/solid";
 
 import CreateCardForm from "./forms/CreateCardForm";
+import { Tranquiluxe } from "uvcanvas";
 
 export default function CreateCard() {
   return (
