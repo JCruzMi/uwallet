@@ -3,10 +3,12 @@ import copyText from "@/utils/copyText";
 
 import Format from "../utils/format";
 import { DropdownMenuDemo } from "./DropdownMenuDemo";
+import { Tranquiluxe } from "uvcanvas";
 
 export default function Card({ name, amount, number, ismain }: CardType) {
   return (
-    <div className="border border-input bg-background hover:bg-accent hover:text-accent-foreground max-w-[230px] min-w-[230px] w-full min-h-[140px] rounded-lg flex flex-col justify-between p-4 text-primary text-base">
+    <div className="overflow-hidden relative transition-all border border-input hover:border-background hover:text-accent-foreground max-w-[230px] min-w-[230px] w-full min-h-[140px] rounded-lg flex flex-col justify-between p-4 text-primary text-base">
+      <Tranquiluxe className="absolute inset-0 w-full h-full z-[-1]"></Tranquiluxe>
       <div>
         <div className="flex items-center justify-between gap-4">
           <div className="line-clamp-1">{name}</div>
@@ -14,7 +16,7 @@ export default function Card({ name, amount, number, ismain }: CardType) {
         </div>
         <div>{Format(amount)} </div>
       </div>
-      <div
+      <button
         className="gap-2 cursor-pointer xs:text-[10px] text-sm inline-flex"
         onClick={() => copyText(number)}
       >
@@ -30,7 +32,7 @@ export default function Card({ name, amount, number, ismain }: CardType) {
           />
         </svg>{" "}
         {number}{" "}
-      </div>
+      </button>
     </div>
   );
 }

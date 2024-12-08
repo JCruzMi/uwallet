@@ -25,7 +25,7 @@ const Dashboard = async () => {
     <>
       <title>UWallet - Dashboard</title>
       <div className="flex flex-col gap-0 py-4">
-        <p className="text-sm font-semibold">Total Balance</p>
+        <p className="text-xs font-semibold">Total Balance</p>
         <Suspense
           fallback={
             <p className="animate-pulse w-[200px] h-8 rounded-md bg-secondary/60"></p>
@@ -34,7 +34,7 @@ const Dashboard = async () => {
           <Balance amount={amount} />
         </Suspense>
       </div>
-      <div className="flex flex-row w-full gap-4 max-h-[140px] overflow-hidden">
+      <div className="flex flex-row w-full max-h-[140px] overflow-hidden gap-4">
         <Suspense fallback={<SliderCardsLoading />}>
           <SliderCards cards={cards} />
         </Suspense>

@@ -1,7 +1,16 @@
-// #region Functions (1)
+import NumberFlow from "@number-flow/react";
 
 export default function Balance({ amount }: any) {
-  return <p className="text-2xl font-semibold">{amount}</p>;
+  const parsedAmount =
+    typeof amount === "string"
+      ? parseFloat(amount.replace(/\$/g, "").replace(/\./g, "").trim())
+      : amount;
+  return (
+    <NumberFlow
+      value={parsedAmount}
+      continuous={true}
+      className="text-4xl font-semibold"
+      prefix="$ "
+    />
+  );
 }
-
-// #endregion Functions (1)
