@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/drawer";
 import { BanknotesIcon } from "@heroicons/react/24/outline";
 
-import WithdrawMoneyForm from "./forms/WithdrawMoney";
+import WithdrawMoneyForm from "./forms/WithdrawMoneyForm";
 import PhoneInput from "./ui/phoneInput";
 
 export default function WithdrawMoney({

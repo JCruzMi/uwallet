@@ -8,13 +8,16 @@ import { depositMoney } from "@/lib/cards";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/input";
 import { useToast } from "../ui/use-toast";
+import Balance from "../Balance";
 
 export default function DepositMoneyForm({
   number,
   amount,
+  value,
 }: {
   number: string;
   amount: number;
+  value: string;
 }) {
   const {
     register,
@@ -24,7 +27,7 @@ export default function DepositMoneyForm({
   } = useForm({
     defaultValues: {
       number: number,
-      amount: "",
+      value: "",
     },
   });
 
@@ -32,11 +35,11 @@ export default function DepositMoneyForm({
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      if (parseInt(data.amount) <= 0) {
+      if (parseInt(value) <= 0) {
         throw new Error("Amount must be greater than zero");
       }
 
-      await depositMoney(data.number.toString(), parseInt(data.amount));
+      await depositMoney(data.number.toString(), parseInt(value));
       reset();
       toast({
         title: "Deposited Money",
@@ -54,29 +57,32 @@ export default function DepositMoneyForm({
 
   return (
     <form onSubmit={onSubmit} className="max-w-xs w-full">
-      <label htmlFor="amount" className="text-slate-500 mb-2 block text-sm">
-        Amount
+      <label
+        htmlFor="amount"
+        className="text-slate-500 mb-2 block text-sm text-center"
+      >
+        Deposit amount
       </label>
-      <div className="relative">
-        <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
-          $
-        </span>
-        <Input
-          type="number"
-          {...register("amount", {
-            required: "Amount is required",
-            valueAsNumber: true,
-          })}
-          className="pl-10 w-full"
-          placeholder="0"
-        />
+      <div className="relative text-gray-500 text-lg items-center w-full flex flex-col truncate max-w-xs divide-y-[1px] divide-gray-500">
+        <Balance amount={value} />
+        <div className="flex items-center justify-center flex-col w-full py-2">
+          <p>Your new balance</p>
+          <Balance amount={amount + parseInt(value)} className="text-sm" />
+        </div>
       </div>
 
-      {errors.amount && (
-        <span className="text-red-500 text-xs">{errors.amount.message}</span>
+      {errors.value && (
+        <span className="text-red-500 text-xs">{errors.value.message}</span>
       )}
 
-      <Button>Deposit</Button>
+      <Button
+        variant="default"
+        disabled={
+          amount === 0 || amount < parseInt(value) || parseInt(value) <= 0
+        }
+      >
+        Deposit
+      </Button>
     </form>
   );
 }
