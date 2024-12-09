@@ -8,6 +8,7 @@ import SliderCards from "@/components/SliderCards";
 import SliderCardsLoading from "@/components/SliderCardsLoading";
 import { getCards } from "@/lib/cards";
 import { Card } from "@/lib/definitions";
+import Link from "next/link";
 
 interface DashboardProps {
   // #region Properties (2)
@@ -31,7 +32,7 @@ const Dashboard = async () => {
             <p className="animate-pulse w-[200px] h-8 rounded-md bg-secondary/60"></p>
           }
         >
-          <Balance amount={amount} />
+          <Balance amount={amount} continuous />
         </Suspense>
       </div>
       <div className="flex flex-row w-full max-h-[140px] overflow-hidden gap-4">
@@ -41,9 +42,12 @@ const Dashboard = async () => {
       </div>
       <div className="flex justify-between w-full">
         <h2 className="font-semibold">Movements</h2>
-        <p className="hover:underline transition-all cursor-pointer">
+        <Link
+          href="/dashboard/movements"
+          className="text-xs font-semibold underline"
+        >
           View all
-        </p>
+        </Link>
       </div>
       <Suspense
         fallback={
@@ -56,7 +60,7 @@ const Dashboard = async () => {
           </div>
         }
       >
-        <Movements />
+        <Movements limit={5} />
       </Suspense>
     </>
   );
