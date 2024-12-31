@@ -1,10 +1,12 @@
 "use server";
 
-import { NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
-import { auth } from "../../auth";
+
+import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+
+import { auth } from "../../auth";
 /**
  * Creates a new movement in the database.
  *
@@ -64,7 +66,7 @@ export async function deleteMovement(id) {
  * @return {Promise<Array>} A promise that resolves to an array of movement objects,
  * or rejects with an error if there is an issue retrieving the data.
  */
-export async function getMovements() {
+export async function getMovements(limit) {
   // Authenticate the user
   const session = await auth();
 
@@ -83,7 +85,7 @@ export async function getMovements() {
         WHERE user_id_sender = ${session?.user.id}
         OR user_id_receiver = ${session?.user.id}
         ORDER BY created_at DESC
-        LIMIT 5`;
+        LIMIT ${limit}`;
 
       // Return the movements as an array of rows
       return {

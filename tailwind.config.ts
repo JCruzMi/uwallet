@@ -11,7 +11,6 @@ const config = {
   prefix: "",
   theme: {
     container: {
-      center: true,
       padding: "2rem",
       screens: {
         "2xl": "1400px",
@@ -65,12 +64,20 @@ const config = {
       },
       keyframes: {
         "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+          from: {
+            height: "0",
+          },
+          to: {
+            height: "var(--radix-accordion-content-height)",
+          },
         },
         "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+          from: {
+            height: "var(--radix-accordion-content-height)",
+          },
+          to: {
+            height: "0",
+          },
         },
         gradient: {
           to: {
@@ -113,15 +120,15 @@ const config = {
           },
         },
       },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        gradient: "gradient 8s linear infinite",
-        "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
-        buttonheartbeat: "buttonheartbeat 2s infinite ease-in-out",
-        "background-shine": "background-shine 2s linear infinite",
-        shimmer: "shimmer 8s infinite",
-      },
+    },
+    animation: {
+      gradient: "gradient 8s linear infinite",
+      "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
+      buttonheartbeat: "buttonheartbeat 2s infinite ease-in-out",
+      "background-shine": "background-shine 2s linear infinite",
+      shimmer: "shimmer 8s infinite",
+      "accordion-down": "accordion-down 0.2s ease-out",
+      "accordion-up": "accordion-up 0.2s ease-out",
     },
   },
   plugins: [require("tailwindcss-animate")],

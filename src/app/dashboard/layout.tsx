@@ -2,13 +2,14 @@ import { ReactNode } from "react";
 
 import TopNavigation from "@/components/dashboard/TopNavigation";
 import { Toaster } from "@/components/ui/toaster";
+import { Footer } from "@/components/dashboard/Footer";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <TopNavigation />
       <main className="flex flex-col items-center justify-between lg:px-24 p-4 py-0 w-full relative pt-16">
-        <div className="flex absolute top-0 overflow-hidden w-full h-full blur-2xl">
+        <div className="flex fixed top-0 overflow-hidden w-full h-full blur-2xl min-h-svh">
           <svg
             viewBox="0 0 1024 1024"
             className="absolute left-1/2 -top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2"
@@ -41,6 +42,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         </div>
       </main>
       <Toaster />
+      {/* <Footer /> */}
     </>
   );
 }

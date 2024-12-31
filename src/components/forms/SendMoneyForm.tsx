@@ -8,13 +8,16 @@ import { sendMoney } from "@/lib/cards";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/input";
 import { useToast } from "../ui/use-toast";
+import Balance from "../Balance";
 
 export default function SendMoneyForm({
   numberSender,
   amountCard,
+  value,
 }: {
   numberSender: string;
   amountCard: number;
+  value: string;
 }) {
   const {
     register,
@@ -26,6 +29,7 @@ export default function SendMoneyForm({
       numberSender: numberSender,
       number: "",
       amount: "",
+      value: "",
     },
   });
 
@@ -33,18 +37,18 @@ export default function SendMoneyForm({
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      if (parseInt(data.amount) <= 0) {
+      if (parseInt(value) <= 0) {
         throw new Error("Amount must be greater than zero");
       } else if (data.number === numberSender) {
         throw new Error("Cannot send money to the same card");
-      } else if (parseInt(data.amount) > amountCard) {
+      } else if (parseInt(value) > amountCard) {
         throw new Error("You don't have enough money in this card");
       }
 
       await sendMoney(
         JSON.parse(JSON.stringify(data.numberSender)),
         JSON.parse(JSON.stringify(data.number)),
-        JSON.parse(JSON.stringify(data.amount))
+        JSON.parse(JSON.stringify(value))
       );
       reset();
       toast({
@@ -62,10 +66,10 @@ export default function SendMoneyForm({
   });
 
   return (
-    <form onSubmit={onSubmit} className="max-w-xs w-full">
+    <form onSubmit={onSubmit} className="max-w-xs w-full ">
       <label
         htmlFor="Number card"
-        className="text-slate-500 mb-2 block text-sm"
+        className="text-slate-500 mb-2 block text-sm text-center"
       >
         Number card
       </label>
@@ -91,29 +95,34 @@ export default function SendMoneyForm({
         <span className="text-red-500 text-xs">{errors.number.message}</span>
       )}
 
-      <label htmlFor="amount" className="text-slate-500 mb-2 block text-sm">
-        Amount
+      <label
+        htmlFor="amount"
+        className="text-slate-500 my-2 block text-sm text-center"
+      >
+        Sending amount
       </label>
-      <div className="relative">
-        <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
-          $
-        </span>
-        <Input
-          type="number"
-          {...register("amount", {
-            required: "Amount is required",
-            valueAsNumber: true,
-          })}
-          className="pl-10 w-full"
-          placeholder="0"
-        />
+      <div className="relative text-gray-500 text-lg items-center w-full flex flex-col truncate max-w-xs divide-y-[1px] divide-gray-500">
+        <Balance amount={value} />
+        <div className="flex items-center justify-center flex-col w-full py-2">
+          <p>Your new balance</p>
+          <Balance amount={amountCard - parseInt(value)} className="text-sm" />
+        </div>
       </div>
 
-      {errors.amount && (
-        <span className="text-red-500 text-xs">{errors.amount.message}</span>
+      {errors.value && (
+        <span className="text-red-500 text-xs">{errors.value.message}</span>
       )}
 
-      <Button>Send</Button>
+      <Button
+        variant="default"
+        disabled={
+          amountCard === 0 ||
+          amountCard < parseInt(value) ||
+          parseInt(value) <= 0
+        }
+      >
+        Send
+      </Button>
     </form>
   );
 }
