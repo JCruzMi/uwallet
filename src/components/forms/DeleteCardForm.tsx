@@ -1,15 +1,21 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useForm } from "react-hook-form";
+import React from 'react';
+import { useForm } from 'react-hook-form';
 
-import { deleteCard } from "@/lib/cards";
+import { deleteCard } from '@/lib/cards';
 
-import { Button } from "../ui/Button";
-import { Input } from "../ui/input";
-import { useToast } from "../ui/use-toast";
+import { Button } from '../ui/Button';
+import { Input } from '../ui/input';
+import { useToast } from '../ui/use-toast';
 
-export default function DeleteCardForm({ number }: { number: string }) {
+export default function DeleteCardForm({
+  number,
+  closeDrawer,
+}: {
+  number: string;
+  closeDrawer: () => void;
+}) {
   const {
     register,
     handleSubmit,
@@ -17,7 +23,7 @@ export default function DeleteCardForm({ number }: { number: string }) {
     reset,
   } = useForm({
     defaultValues: {
-      number: "",
+      number: '',
     },
   });
 
@@ -26,61 +32,62 @@ export default function DeleteCardForm({ number }: { number: string }) {
   const onSubmit = handleSubmit(async (data) => {
     try {
       if (data.number !== number) {
-        throw new Error("Card number does not match");
+        throw new Error('Card number does not match');
       }
 
       await deleteCard(data.number.toString());
       reset();
+      closeDrawer();
       toast({
-        title: "Deleted Card",
-        description: "The card has been deleted succesfully",
-        variant: "success",
+        title: 'Deleted Card',
+        description: 'The card has been deleted succesfully',
+        variant: 'success',
       });
     } catch (error: string | any) {
       toast({
-        title: "Error",
+        title: 'Error',
         description: error.message,
-        variant: "error",
+        variant: 'error',
       });
     }
   });
 
   return (
-    <form onSubmit={onSubmit} className="max-w-xs w-full">
+    <form onSubmit={onSubmit} className='max-w-xs w-full'>
       <label
-        htmlFor="Number card"
-        className="text-slate-500 mb-2 block text-sm"
+        htmlFor='Number card'
+        className='text-slate-500 mb-2 block text-sm'
       >
         Number card
       </label>
       <Input
-        type="text"
-        {...register("number", {
+        type='text'
+        {...register('number', {
           required: {
             value: true,
-            message: "Number card is required",
+            message: 'Number card is required',
           },
           validate: {
             validCard: (value) => {
               if (value !== number) {
-                return "Card number does not match";
+                return 'Card number does not match';
               }
               return true;
             },
           },
         })}
-        className="w-full"
-        placeholder="1000 1000 1000 1000"
+        className='w-full'
+        placeholder='1000 1000 1000 1000'
         onChange={(e) => {
-          let value = e.target.value.replace(/\D/g, "");
+          let value = e.target.value.replace(/\D/g, '');
           value = value.slice(0, 16);
-          value = value.replace(/(.{4})/g, "$1 ").trim();
+          value = value.replace(/(.{4})/g, '$1 ').trim();
           e.target.value = value;
         }}
       />
 
       {errors.number && (
-        <span className="text-red-500 text-xs">{errors.number.message}</span>
+        <span className='text-red-500 text-xs'>{errors.number.message}</span>
       )}
 
       <Button>Delete</Button>
