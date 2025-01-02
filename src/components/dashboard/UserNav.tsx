@@ -51,7 +51,6 @@ export async function UserNav({ children }: any) {
               <Link href="/dashboard/profile">Profile</Link>
             </DropdownMenuItem>
 
-            <DropdownMenuItem>Billing</DropdownMenuItem>
             <DropdownMenuItem>
               <Link href="/dashboard/settings">Settings</Link>
             </DropdownMenuItem>
