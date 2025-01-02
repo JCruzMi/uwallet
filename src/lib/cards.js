@@ -1,13 +1,17 @@
-"use server";
+'use server';
 
-import { NextResponse } from "next/server";
-import { sql } from "@vercel/postgres";
-import { auth } from "../../auth";
-import { generateCreditCard } from "./utils";
-import { createMovement } from "./movements";
-import Format from "@/utils/format";
-import { unstable_noStore as noStore, revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import Format from '@/utils/format';
+
+import { sql } from '@vercel/postgres';
+
+import { NextResponse } from 'next/server';
+import { unstable_noStore as noStore, revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
+
+import { auth } from '../../auth';
+
+import { createMovement } from './movements';
+import { generateCreditCard } from './utils';
 
 /**
  * Create a credit card for a user.
@@ -43,8 +47,8 @@ export async function createCard(name) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
   }
-  revalidatePath("/dashboard");
-  redirect("/dashboard");
+  revalidatePath('/dashboard');
+  redirect('/dashboard');
 }
 
 export async function createCardWithId(name, id) {
@@ -70,8 +74,8 @@ export async function createCardWithId(name, id) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
   }
-  revalidatePath("/dashboard");
-  redirect("/dashboard");
+  revalidatePath('/dashboard');
+  redirect('/dashboard');
 }
 
 /**
@@ -107,8 +111,8 @@ export async function deleteCard(number_card) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
   }
-  revalidatePath("/dashboard");
-  redirect("/dashboard");
+  revalidatePath('/dashboard');
+  redirect('/dashboard');
 }
 
 /**
@@ -130,7 +134,7 @@ export async function getCards() {
         AND status`;
 
       return {
-        cards: data.rows,
+        cards: data.rows.sort((a, b) => a.created_at - b.created_at),
         amount: Format(data.rows.reduce((acc, item) => acc + item.amount, 0)),
       };
     }
@@ -161,8 +165,8 @@ export async function sendMoney(number_sender, number_receiver, amount) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
   }
-  revalidatePath("/dashboard");
-  redirect("/dashboard");
+  revalidatePath('/dashboard');
+  redirect('/dashboard');
 }
 
 /**
@@ -179,7 +183,7 @@ export async function depositMoney(number_receiver, amount) {
     // If the user is logged in
     if (session?.user) {
       // Set the sender's card number and user ID
-      const number_sender = "0000000000000000";
+      const number_sender = '0000000000000000';
       // Increase the receiver's balance by the deposit amount
       await sql`update cards set amount = amount + ${amount} where id = ${number_receiver}`;
       // Create a new movement record
@@ -189,8 +193,8 @@ export async function depositMoney(number_receiver, amount) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
   }
-  revalidatePath("/dashboard");
-  redirect("/dashboard");
+  revalidatePath('/dashboard');
+  redirect('/dashboard');
 }
 
 /**
@@ -207,7 +211,7 @@ export async function withdrawMoney(number_sender, amount) {
     // If the user is logged in
     if (session?.user) {
       // Set the receiver's card number and user ID
-      const number_receiver = "0000000000000001";
+      const number_receiver = '0000000000000001';
 
       // Decrease the sender's balance by the withdrawal amount
       await sql`update cards set amount = amount - ${amount} where id = ${number_sender}`;
@@ -218,8 +222,8 @@ export async function withdrawMoney(number_sender, amount) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
   }
-  revalidatePath("/dashboard");
-  redirect("/dashboard");
+  revalidatePath('/dashboard');
+  redirect('/dashboard');
 }
 
 /**
@@ -240,6 +244,6 @@ export async function updateCard(id, name) {
     // If an error occurs, return the error as a JSON response
     return NextResponse.json(error);
   }
-  revalidatePath("/dashboard");
-  redirect("/dashboard");
+  revalidatePath('/dashboard');
+  redirect('/dashboard');
 }

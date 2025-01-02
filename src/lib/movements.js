@@ -1,12 +1,12 @@
-"use server";
+'use server';
 
-import { sql } from "@vercel/postgres";
+import { sql } from '@vercel/postgres';
 
-import { NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
-import { auth } from "../../auth";
+import { auth } from '../../auth';
 /**
  * Creates a new movement in the database.
  *
@@ -56,8 +56,8 @@ export async function deleteMovement(id) {
     // If there is an error, return a JSON response with the error.
     return NextResponse.json(error);
   }
-  revalidatePath("/dashboard");
-  redirect("/dashboard");
+  revalidatePath('/dashboard');
+  redirect('/dashboard');
 }
 
 /**
@@ -78,7 +78,10 @@ export async function getMovements(limit) {
         SELECT * , 
         CASE WHEN user_id_sender = 1 THEN 'true' ELSE 'false' END AS deposit,
         CASE WHEN user_id_receiver = 1 THEN 'true' ELSE 'false' END AS draw,
-        CASE WHEN user_id_sender <> 1 AND user_id_receiver <> 1 THEN 'transfer' 
+        CASE         
+        WHEN user_id_sender = user_id_receiver THEN 'transfer_inter'
+        WHEN user_id_sender <> user_id_receiver AND user_id_receiver <> 1 AND user_id_sender = ${session?.user.id} THEN 'transfer_send'
+        WHEN user_id_sender <> user_id_receiver AND user_id_sender <> 1 AND user_id_receiver = ${session?.user.id} THEN 'transfer_receive'      
         WHEN user_id_sender = ${session?.user.id} THEN 'draw' 
         WHEN user_id_receiver = ${session?.user.id} THEN 'deposit' END AS type
         FROM movements
