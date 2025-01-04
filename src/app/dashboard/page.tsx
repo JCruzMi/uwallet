@@ -18,7 +18,7 @@ const Dashboard = async () => {
         <p className="text-sm font-semibold">Total Balance</p>
         <Suspense
           fallback={
-            <p className="animate-pulse w-[200px] h-8 rounded-md bg-secondary/60"></p>
+            <div className="animate-pulse w-[200px] h-8 rounded-md bg-secondary/60"></div>
           }
         >
           <Balance amount={amount} />

@@ -91,12 +91,12 @@ export default async function Movements({ limit }: any) {
                   {iconType(item.type)}
                 </div>
                 <div>
-                  <p className="text-sm capitalize">
+                  <span className="text-sm capitalize">
                     {item.type.startsWith("transfer") ? "Transfer" : item.type}{" "}
                     <p className="text-xs font-light text-white/50">
                       {moment(item.created_at).subtract(5, "hours").fromNow()}
                     </p>
-                  </p>
+                  </span>
                   <p className="text-lg font-semibold">{Format(item.amount)}</p>
                 </div>
               </div>
