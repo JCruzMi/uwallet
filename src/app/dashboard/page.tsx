@@ -8,6 +8,7 @@ import SliderCards from "@/components/SliderCards";
 import SliderCardsLoading from "@/components/SliderCardsLoading";
 import { getCards } from "@/lib/cards";
 import Link from "next/link";
+import Actions from "@/components/Actions";
 const Dashboard = async () => {
   const { cards, amount }: any = await getCards();
 
@@ -28,6 +29,9 @@ const Dashboard = async () => {
         <Suspense fallback={<SliderCardsLoading />}>
           <SliderCards cards={cards} />
         </Suspense>
+      </div>
+      <div className="flex w-full justify-center">
+        <Actions />
       </div>
       <div className="flex justify-between w-full">
         <h2 className="font-semibold">Movements</h2>
