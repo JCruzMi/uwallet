@@ -1,32 +1,23 @@
 import { BookDown, BookUp, FolderPen, HandCoins } from "lucide-react";
+import SendMoney from "./SendMoney";
+import { Drawer } from "vaul";
+import DepositMoney from "./DepositMoney";
+import WithdrawMoney from "./WithdrawMoney";
+import UpdateCard from "./UpdateCard";
 
-export default function Actions() {
+export default function Actions({
+  number,
+  amount,
+}: {
+  number: string;
+  amount: number;
+}) {
   return (
     <div className="flex justify-between w-[300px] items-center max-w-sm">
-      <div className="flex flex-col justify-center items-center gap-2 cursor-pointer">
-        <div className="rounded-full bg-background h-14 w-14 flex flex-col justify-center items-center">
-          <BookUp />
-        </div>
-        Send
-      </div>
-      <div className="flex flex-col justify-center items-center gap-2 cursor-pointer">
-        <div className="rounded-full bg-background h-14 w-14 flex flex-col justify-center items-center">
-          <BookDown />
-        </div>
-        Deposit
-      </div>
-      <div className="flex flex-col justify-center items-center gap-2 cursor-pointer">
-        <div className="rounded-full bg-background h-14 w-14 flex flex-col justify-center items-center">
-          <HandCoins />
-        </div>
-        Withdraw
-      </div>
-      <div className="flex flex-col justify-center items-center gap-2 cursor-pointer">
-        <div className="rounded-full bg-background h-14 w-14 flex flex-col justify-center items-center">
-          <FolderPen />
-        </div>
-        Rename
-      </div>
+      <SendMoney numberSender={number} amountCard={amount} />
+      <DepositMoney number={number} amount={amount} />
+      <WithdrawMoney number={number} amount={amount} />
+      <UpdateCard number={number} />
     </div>
   );
 }

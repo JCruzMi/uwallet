@@ -11,7 +11,7 @@ import Link from "next/link";
 import Actions from "@/components/Actions";
 const Dashboard = async () => {
   const { cards, amount }: any = await getCards();
-
+  const selectedCard = cards.find((card: any) => card.ismain);
   return (
     <>
       <title>UWallet - Dashboard</title>
@@ -31,7 +31,7 @@ const Dashboard = async () => {
         </Suspense>
       </div>
       <div className="flex w-full justify-center">
-        <Actions />
+        <Actions number={selectedCard.id} amount={selectedCard.amount} />
       </div>
       <div className="flex justify-between w-full">
         <h2 className="font-semibold">Movements</h2>
