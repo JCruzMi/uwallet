@@ -50,10 +50,6 @@ export async function UserNav({ children }: any) {
             <DropdownMenuItem>
               <Link href="/dashboard/profile">Profile</Link>
             </DropdownMenuItem>
-
-            <DropdownMenuItem>
-              <Link href="/dashboard/settings">Settings</Link>
-            </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           {children}
