@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-
 import AuthLayout from "@/components/auth/layout";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/input";
@@ -21,6 +20,12 @@ export default function Login() {
   });
 
   const onSubmit = handleSubmit(async (data) => {
+    toast({
+      title: "Loading...",
+      description: "Please wait a moment",
+      variant: "default",
+    });
+
     authenticate({
       email: data.email,
       password: data.password,

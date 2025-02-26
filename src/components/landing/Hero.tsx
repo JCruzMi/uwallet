@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { BorderBeam } from "../magicui/border-beam";
 import { Button } from "../ui/Button";
+import Image from "next/image";
 
 export default function HeroSection() {
   return (
@@ -24,7 +25,7 @@ export default function HeroSection() {
             Get Started
           </Button>
         </Link>
-        <Link href="/" target="_blank" className="mt-5">
+        <Link href="/#pricing" className="mt-5">
           <Button size="sm" variant="outline">
             View Pricing
           </Button>
@@ -33,15 +34,19 @@ export default function HeroSection() {
       <div>
         <div className="relative flex max-w-6xl justify-center overflow-hidden mt-7">
           <div className="relative rounded-xl">
-            <img
-              src="/images/web.png"
+            <Image
+              src="/images/phone.png"
               alt="Hero Image"
-              className="block w-[1200px] rounded-[inherit] border object-contain shadow-lg dark:hidden z-10"
+              className="block rounded-[inherit] border object-contain shadow-lg md:hidden z-10"
+              width={350}
+              height={800}
             />
-            <img
-              src="/images/web.png"
+            <Image
+              src="/images/web.webp"
               alt="Hero Image"
-              className="dark:block w-[1200px] rounded-[inherit] border object-contain shadow-lg hidden z-10"
+              width={700}
+              height={1200}
+              className="md:block lg:w-[950px] xl:w-[1200px] rounded-[inherit] border object-contain shadow-lg hidden z-10"
             />
 
             <BorderBeam size={250} duration={12} delay={9} />

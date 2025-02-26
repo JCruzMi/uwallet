@@ -30,6 +30,12 @@ export default function Register() {
       username: string;
       email: string;
     }) => {
+      toast({
+        title: "Loading...",
+        description: "Please wait a moment",
+        variant: "default",
+      });
+
       if (data.password !== data.confirmPassword) {
         return toast({
           title: "Error",
@@ -49,6 +55,7 @@ export default function Register() {
           "Content-Type": "application/json",
         },
       });
+
       if (res.ok) {
         router.push("/login");
         toast({

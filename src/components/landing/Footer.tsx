@@ -58,7 +58,7 @@ export default function Footer() {
                   <ul className="mt-6 space-y-4 text-sm">
                     <li>
                       <a
-                        href="/"
+                        href="https://github.com/JCruzMi"
                         target="_blank"
                         className="transition hover:opacity-75"
                       >
@@ -68,7 +68,7 @@ export default function Footer() {
                     </li>
                     <li>
                       <a
-                        href="/"
+                        href="https://github.com/KiaraLuz"
                         target="_blank"
                         className="  transition hover:opacity-75"
                       >
@@ -84,7 +84,11 @@ export default function Footer() {
 
                   <ul className="mt-6 space-y-4 text-sm">
                     <li>
-                      <a href="/" className="  transition hover:opacity-75">
+                      <a
+                        href="https://github.com/JCruzMi/uwallet"
+                        className="  transition hover:opacity-75"
+                        target="_blank"
+                      >
                         {" "}
                         UWallet repository{" "}
                       </a>

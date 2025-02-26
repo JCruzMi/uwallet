@@ -205,7 +205,7 @@ export default function Pricing() {
   ];
 
   return (
-    <div>
+    <div id="pricing" className="scroll-mt-20">
       <PricingHeader
         title="Sample Pricing Plans"
         subtitle="Use these sample pricing cards in your SAAS"

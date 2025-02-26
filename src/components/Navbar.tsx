@@ -2,11 +2,9 @@ import Link from "next/link";
 
 import { Button } from "./ui/Button";
 
-// #region Functions (1)
-
 export default function Navbar() {
   return (
-    <nav className="w-full max-w-6xl m-auto">
+    <nav className="w-full max-w-6xl m-auto sticky top-0 z-50 bg-background/95 backdrop-blur">
       <div className="flex justify-between items-center mb-4 px-4">
         <div className="flex items-center md:gap-8">
           <Link href="/">
@@ -28,6 +26,11 @@ export default function Navbar() {
             <Link href="/#features">
               <Button variant="ghost" className="flex gap-2 text-primary px-2">
                 Features
+              </Button>
+            </Link>
+            <Link href="/#tecnologies">
+              <Button variant="ghost" className="flex gap-2 text-primary px-2">
+                Tecnologies
               </Button>
             </Link>
             <Link href="/#pricing">
