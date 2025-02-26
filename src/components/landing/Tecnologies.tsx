@@ -8,53 +8,56 @@ const ProjectsData = [
     name: "Nextjs 14",
     description:
       "A framework for React that enables server-side rendering and effortless deployment.",
-    image: "",
+    image: "/images/nextjs.webp",
   },
   {
     id: 2,
     name: "TypeScript",
     description:
       "A typed superset of JavaScript that enhances code maintainability and scalability.",
-    image: "",
+    image: "/images/typescript.webp",
   },
   {
     id: 3,
     name: "Tailwind CSS",
     description:
       "A utility-first CSS framework for building custom designs with ease.",
-    image: "",
+    image: "/images/tailwind.webp",
   },
   {
     id: 4,
     name: "Shadcn UI",
     description: "Beautifully designed components by Shadcn.",
-    image: "",
+    image: "/images/shadcn.webp",
   },
   {
     id: 6,
     name: "MagicUI",
     description: "Beautifully designed components by Magic UI.",
-    image: "",
+    image: "/images/magicui.webp",
   },
   {
     id: 7,
     name: "PostgreSQL Vercel",
     description:
       "A free and open-source relational database management system.",
-    image: "",
+    image: "/images/postgresql.webp",
   },
   {
     id: 9,
     name: "Next Auth",
     description:
       "Authentication and authorization solution for Next.js applications.",
-    image: "",
+    image: "/images/nextauth.webp",
   },
 ];
 
 const Tecnologies = () => {
   return (
-    <div className="flex flex-col justify-center items-center w-full mx-auto max-w-7xl px-6 lg:px-8">
+    <div
+      id="tecnologies"
+      className="scroll-mt-20 flex flex-col justify-center items-center w-full mx-auto max-w-7xl px-6 lg:px-8 cursor-default"
+    >
       <div className="flex flex-col mb-[3rem]">
         <h1 className="scroll-m-20 text-3xl sm:text-xl md:text-3xl font-semibold tracking-tight lg:text-4xl text-center max-w-[700px]">
           Built with the best
@@ -77,7 +80,7 @@ const Tecnologies = () => {
               key={project.id}
               className="mt-5 text-left border p-6 rounded-md dark:bg-black"
             >
-              <a target="_blank" rel="noopener noreferrer">
+              <div>
                 {project.image && (
                   <Image
                     src={project.image}
@@ -91,7 +94,7 @@ const Tecnologies = () => {
                 <div className="max-w-[250px] text-sm font-normal text-gray-500">
                   {project.description}
                 </div>
-              </a>
+              </div>
             </motion.div>
           );
         })}
